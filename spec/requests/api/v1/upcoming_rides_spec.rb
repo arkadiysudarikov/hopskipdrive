@@ -2,7 +2,7 @@ require 'swagger_helper'
 
 RSpec.describe 'api/v1/upcoming_rides', type: :request do
   path '/api/v1/drivers/{driver_id}/upcoming_rides' do
-    parameter name: 'driver_id', in: :path, type: :string, format: :uuid, description: 'driver_id'
+    parameter name: 'driver_id', in: :path, type: :string, description: 'driver_id'
 
     get('list upcoming rides') do
       response(200, 'successful') do
