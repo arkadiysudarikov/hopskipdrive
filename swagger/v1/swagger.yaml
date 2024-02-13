@@ -8,7 +8,6 @@ paths:
     parameters:
     - name: driver_id
       in: path
-      format: uuid
       description: driver_id
       required: true
       schema:
