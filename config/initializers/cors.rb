@@ -12,7 +12,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
     resource "*",
       headers: :any,
       methods: [:get]
-    end
+  end
 
   allow do
     origins "http://localhost:3000"
@@ -20,5 +20,5 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
     resource "*",
       headers: :any,
       methods: [:get]
-    end
   end
+end
