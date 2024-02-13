@@ -1,0 +1,29 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/drivers/{driver_id}/upcoming_rides":
+    parameters:
+    - name: driver_id
+      in: path
+      format: uuid
+      description: driver_id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: list upcoming rides
+      responses:
+        '200':
+          description: successful
+servers:
+- url: https://hopskipdrive-fa2a8e6ce701.herokuapp.com
+  variables:
+    defaultHost:
+      default: https://hopskipdrive-fa2a8e6ce701.herokuapp.com
+- url: http://localhost:3000
+  variables:
+    defaultHost:
+      default: http://localhost:3000
