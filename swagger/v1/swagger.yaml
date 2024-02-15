@@ -8,15 +8,20 @@ paths:
     parameters:
     - name: driver_id
       in: path
-      description: driver_id
+      description: Driver ID
       required: true
+      schema:
+        type: string
+    - name: page
+      in: query
+      description: Page number
       schema:
         type: string
     get:
       summary: list upcoming rides
       responses:
-        '200':
-          description: successful
+        '404':
+          description: Not Found
 servers:
 - url: https://hopskipdrive-fa2a8e6ce701.herokuapp.com
   variables:
