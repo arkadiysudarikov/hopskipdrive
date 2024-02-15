@@ -1,12 +1,6 @@
 # frozen_string_literal: true
 
 require "rails_helper"
-require_relative "../../lib/upcoming_rides"
-
-# Create a class to include the UpcomingRides module for testing
-class UpcomingRidesForTesting
-  include UpcomingRides
-end
 
 RSpec.describe UpcomingRides do
   include described_class
@@ -16,6 +10,7 @@ RSpec.describe UpcomingRides do
     instance_double(Ride, start_address: Faker::Address.street_address,
                           destination_address: Faker::Address.street_address)
   end
+
   let(:headers) do
     {
       "Accept" => "*/*",
@@ -40,11 +35,11 @@ RSpec.describe UpcomingRides do
   end
 
   describe '#sort_upcoming_rides' do
-    xit 'sorts the upcoming rides by the score in descending order' do
+    it 'sorts the upcoming rides by the score in descending order' do
       # Create some sample rides with scores
-      ride1 = instance_double(Ride, score: 5)
-      ride2 = instance_double(Ride, score: 7)
-      ride3 = instance_double(Ride, score: 3)
+      ride1 = { score: 5 }
+      ride2 = { score: 7 }
+      ride3 = { score: 3 }
 
       # Expect the sort_upcoming_rides method to return the rides sorted by score
       expect(sort_upcoming_rides([ride1, ride2, ride3])).to eq([ride2, ride1, ride3])
@@ -108,18 +103,18 @@ RSpec.describe UpcomingRides do
 
   describe '#add_ride_attributes' do
     it 'returns a hash with ride attributes and additional attributes' do
-      # Stub the data method to return sample data
-      allow(self).to receive(:data).and_return({
-                                                 home_address: '123 Main St',
-                                                 start_address: '456 Elm St',
-                                                 commute_distance: 5.0,
-                                                 commute_duration: 10.0,
-                                                 destination_address: '789 Oak St',
-                                                 ride_distance: 8.0,
-                                                 ride_duration: 15.0,
-                                                 ride_earnings: 20.0,
-                                                 score: 0.5
-                                               })
+      # Stub the get_data method to return sample data
+      allow(self).to receive(:get_data).and_return({
+                                                     home_address: '123 Main St',
+                                                     start_address: '456 Elm St',
+                                                     commute_distance: 5.0,
+                                                     commute_duration: 10.0,
+                                                     destination_address: '789 Oak St',
+                                                     ride_distance: 8.0,
+                                                     ride_duration: 15.0,
+                                                     ride_earnings: 20.0,
+                                                     score: 0.5
+                                                   })
 
       # Stub the ride attributes to be merged
       allow(ride).to receive(:attributes).and_return({ id: 1, name: 'Ride 1' })
@@ -163,7 +158,7 @@ RSpec.describe UpcomingRides do
     end
   end
 
-  describe '#data' do
+  describe '#get_data' do
     it 'returns a hash with data including commute distance, duration, ride earnings, and score' do
       home_address = instance_double(Address, id: Faker::Internet.uuid,
                                               address: "1588 E Thompson Blvd")
@@ -171,6 +166,9 @@ RSpec.describe UpcomingRides do
                                                address: "2112 E Thompson Blvd")
       destination_address = instance_double(Address, id: Faker::Internet.uuid,
                                                      address: "2112 E Thompson Blvd")
+
+      # expect_any_instance_of(GoogleDirectionsApiClient).to receive(:get_directions).with(home_address.address, start_address.address).and_return([5.0, 10.0])
+      # expect_any_instance_of(GoogleDirectionsApiClient).to receive(:get_directions).with(start_address.address, destination_address.address).and_return([5.0, 10.0])
 
       stub_request(:get, "https://maps.googleapis.com/maps/api/directions/json?origin=1588 E Thompson Blvd&destination=2112 E Thompson Blvd&key=#{Rails.application.credentials.google_api_key}")
         .with(
@@ -232,20 +230,18 @@ RSpec.describe UpcomingRides do
         "status" : "OK"
         }', headers: {})
 
-      puts data(home_address, start_address, destination_address).inspect
-
-      # Expect the data method to return a hash with the correct data
-      expect(data(home_address, start_address, destination_address)).to eq({
-                                                                             home_address: home_address,
-                                                                             start_address: start_address,
-                                                                             commute_distance: 5.0,
-                                                                             commute_duration: 10.0,
-                                                                             destination_address: destination_address,
-                                                                             ride_distance: 5.0,
-                                                                             ride_duration: 10.0,
-                                                                             ride_earnings: 12.0,
-                                                                             score: 0.6
-                                                                           })
+      # Expect the get_data method to return a hash with the correct data
+      expect(get_data(home_address, start_address, destination_address)).to eq({
+                                                                                 home_address: home_address,
+                                                                                 start_address: start_address,
+                                                                                 commute_distance: 5.0,
+                                                                                 commute_duration: 10.0,
+                                                                                 destination_address: destination_address,
+                                                                                 ride_distance: 5.0,
+                                                                                 ride_duration: 10.0,
+                                                                                 ride_earnings: 12.0,
+                                                                                 score: 0.6
+                                                                               })
     end
   end
 end

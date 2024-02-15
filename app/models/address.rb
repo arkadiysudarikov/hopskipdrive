@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Adress model is used to store the address of the address.
+# Adress model is used to store valid formatted addresses.
 class Address < ApplicationRecord
   has_many :home_addresses, class_name: "Driver", foreign_key: "home_address_id"
   has_many :start_addresses, class_name: "Ride", foreign_key: "start_address_id"

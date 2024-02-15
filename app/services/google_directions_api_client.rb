@@ -1,12 +1,18 @@
 # frozen_string_literal: true
 
+# DirectionsAPIError is a custom error class that is raised when there is an error fetching
+# directions from the Google Directions API
 class DirectionsAPIError < StandardError; end
 
+# GoogleDirectionsApiClient is a service class that fetches directions from the Google Directions
+# API
 class GoogleDirectionsApiClient
   BASE_URL = "https://maps.googleapis.com/maps/api/directions/json"
 
   METERS_IN_A_MILE = 1609.34
-  SECONDS_IN_A_MINUTE = 60
+  SECONDS_IN_A_MINUTE = 60.0
+
+  GOOGLE_DIRECTIONS_API_ERROR = "Google Directions API Error"
 
   def initialize(api_key)
     @api_key = api_key
@@ -17,7 +23,7 @@ class GoogleDirectionsApiClient
 
     response = send_request(url)
 
-    check_response(response)
+    check_response!(response)
 
     parse_response(response)
   end
@@ -34,9 +40,9 @@ class GoogleDirectionsApiClient
     raise DirectionsAPIError, "Unable to fetch directions. Please try again."
   end
 
-  def check_response(response)
-    raise DirectionsAPIError, "Not OK" unless response["status"] == "OK"
-    raise DirectionsAPIError, "Google Directioons API error" if response["error_message"].present?
+  def check_response!(response)
+    raise DirectionsAPIError, GOOGLE_DIRECTIONS_API_ERROR unless response["status"] == "OK"
+    raise DirectionsAPIError, GOOGLE_DIRECTIONS_API_ERROR if response["error_message"].present?
   end
 
   def parse_response(response)

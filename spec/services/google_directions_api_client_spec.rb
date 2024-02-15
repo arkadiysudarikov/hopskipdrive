@@ -4,7 +4,7 @@ require "rails_helper"
 
 RSpec.describe GoogleDirectionsApiClient do
   subject(:google_directions_api_client) do
-    described_class.new(Rails.application.credentials.google_api_key)
+    described_class.new("GOOGLE_DIRECTIONS_API_KEY")
   end
 
   let(:headers) do
@@ -17,7 +17,7 @@ RSpec.describe GoogleDirectionsApiClient do
 
   describe '#get_directions' do
     it 'returns the distance and duration in miles and minutes' do
-      stub_request(:get, "https://maps.googleapis.com/maps/api/directions/json?origin=1588%20E%20Thompson%20Blvd&destination=2112%20E%20Thompson%20Blvd&key=#{Rails.application.credentials.google_api_key}")
+      stub_request(:get, "https://maps.googleapis.com/maps/api/directions/json?origin=1588%20E%20Thompson%20Blvd&destination=2112%20E%20Thompson%20Blvd&key=GOOGLE_DIRECTIONS_API_KEY")
         .with(
           headers: headers
         )

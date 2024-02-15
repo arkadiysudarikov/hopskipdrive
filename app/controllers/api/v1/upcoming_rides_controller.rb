@@ -4,13 +4,7 @@
 module Api
   # API::V1 module for version 1 of the API
   module V1
-    # UpcomingRidesController for the API
-    # This controller is responsible for returning upcoming rides for a driver
-    # It includes the UpcomingRides module
-    # It includes the Pagy::Backend module for pagination
-    # It inherits from ApplicationController
-    # It has an index method
-    # It has a private driver_params method
+    # This controller is responsible for returning the upcoming rides for a driver
     class UpcomingRidesController < ApplicationController
       include UpcomingRides
       include Pagy::Backend
