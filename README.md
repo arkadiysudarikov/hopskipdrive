@@ -112,7 +112,8 @@ Please refer to the project's [OpenAPI specicificaiton.
 
 ## Screenshot
 
-![Screenshot 2024-02-15 at 09 35 33 (2)](https://github.com/arkadiysudarikov/hopskipdrive/assets/382532/875ea5a6-ee02-4349-837f-9329af08422d)
+![Screenshot 2024-02-15 at 10 01 34 (2)](https://github.com/arkadiysudarikov/hopskipdrive/assets/382532/028f0dd5-4099-4e88-ab78-92f4fc1828ee)
+
 
 ## Contributing
 
