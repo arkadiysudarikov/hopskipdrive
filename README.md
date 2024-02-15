@@ -44,72 +44,70 @@ Please refer to the project's [OpenAPI specicificaiton.
 
 
 ```json
-
 [
   {
-    "id": "e5fa67c2-3224-4489-9999-77c90f2c2c27",
-    "start_address_id": "222cf8ec-d1c2-4fca-ab91-4397b6261a10",
-    "destination_address_id": "57adb1cf-e028-4c37-bb38-ece39ca365d5",
-    "created_at": "2024-02-15T02:38:41.634Z",
-    "updated_at": "2024-02-15T02:38:41.634Z",
+    "id": "da5f475d-c0b4-499e-8b75-14fd447df007",
+    "start_address_id": "23ecb6ef-ec09-4469-97b8-feec0c930f88",
+    "destination_address_id": "2cd75452-a2e2-466f-92c0-8a1e49711fab",
+    "created_at": "2024-02-15T17:57:19.700Z",
+    "updated_at": "2024-02-15T17:57:19.700Z",
     "home_address": {
-      "id": "57adb1cf-e028-4c37-bb38-ece39ca365d5",
+      "id": "2cd75452-a2e2-466f-92c0-8a1e49711fab",
       "address": "1600 Pennsylvania Ave",
-      "created_at": "2024-02-15T02:38:41.562Z",
-      "updated_at": "2024-02-15T02:38:41.562Z"
+      "created_at": "2024-02-15T17:57:19.620Z",
+      "updated_at": "2024-02-15T17:57:19.620Z"
     },
     "start_address": {
-      "id": "222cf8ec-d1c2-4fca-ab91-4397b6261a10",
-      "address": "2112 E Thompson Blvd",
-      "created_at": "2024-02-15T02:38:41.572Z",
-      "updated_at": "2024-02-15T02:38:41.572Z"
-    },
-    "commute_distance": 2728.2886152087194,
-    "commute_duration": 2370.616666666667,
-    "destination_address": {
-      "id": "57adb1cf-e028-4c37-bb38-ece39ca365d5",
-      "address": "1600 Pennsylvania Ave",
-      "created_at": "2024-02-15T02:38:41.562Z",
-      "updated_at": "2024-02-15T02:38:41.562Z"
-    },
-    "ride_distance": 2727.2981470664995,
-    "ride_duration": 2373.866666666667,
-    "ride_earnings": 5746.653887266416,
-    "score": 1.2112285961449436
-  },
-  {
-    "id": "70e03e90-7938-4981-b5d4-afdfe829867c",
-    "start_address_id": "de873985-bf19-46c2-a42c-9e321519b3a4",
-    "destination_address_id": "222cf8ec-d1c2-4fca-ab91-4397b6261a10",
-    "created_at": "2024-02-15T02:38:41.629Z",
-    "updated_at": "2024-02-15T02:38:41.629Z",
-    "home_address": {
-      "id": "57adb1cf-e028-4c37-bb38-ece39ca365d5",
-      "address": "1600 Pennsylvania Ave",
-      "created_at": "2024-02-15T02:38:41.562Z",
-      "updated_at": "2024-02-15T02:38:41.562Z"
-    },
-    "start_address": {
-      "id": "de873985-bf19-46c2-a42c-9e321519b3a4",
+      "id": "23ecb6ef-ec09-4469-97b8-feec0c930f88",
       "address": "1600 Amphitheatre Pkwy",
-      "created_at": "2024-02-15T02:38:41.567Z",
-      "updated_at": "2024-02-15T02:38:41.567Z"
+      "created_at": "2024-02-15T17:57:19.625Z",
+      "updated_at": "2024-02-15T17:57:19.625Z"
     },
     "commute_distance": 2843.7222712416274,
     "commute_duration": 2512.233333333333,
     "destination_address": {
-      "id": "222cf8ec-d1c2-4fca-ab91-4397b6261a10",
-      "address": "2112 E Thompson Blvd",
-      "created_at": "2024-02-15T02:38:41.572Z",
-      "updated_at": "2024-02-15T02:38:41.572Z"
+      "id": "2cd75452-a2e2-466f-92c0-8a1e49711fab",
+      "address": "1600 Pennsylvania Ave",
+      "created_at": "2024-02-15T17:57:19.620Z",
+      "updated_at": "2024-02-15T17:57:19.620Z"
     },
-    "ride_distance": 319.79444989871627,
-    "ride_duration": 299.98333333333335,
-    "ride_earnings": 683.6800081814077,
-    "score": 0.24311071628480777
+    "ride_distance": 2849.750208159867,
+    "ride_duration": 2509.9666666666667,
+    "ride_earnings": 6025.601978906467,
+    "score": 1.199793313469489
+  },
+  {
+    "id": "68e339e4-ed2a-4cf5-bb4a-406b901a0d15",
+    "start_address_id": "23ecb6ef-ec09-4469-97b8-feec0c930f88",
+    "destination_address_id": "66f153e4-a8cb-4494-b0ae-a1e2907eb177",
+    "created_at": "2024-02-15T17:57:19.664Z",
+    "updated_at": "2024-02-15T17:57:19.664Z",
+    "home_address": {
+      "id": "2cd75452-a2e2-466f-92c0-8a1e49711fab",
+      "address": "1600 Pennsylvania Ave",
+      "created_at": "2024-02-15T17:57:19.620Z",
+      "updated_at": "2024-02-15T17:57:19.620Z"
+    },
+    "start_address": {
+      "id": "23ecb6ef-ec09-4469-97b8-feec0c930f88",
+      "address": "1600 Amphitheatre Pkwy",
+      "created_at": "2024-02-15T17:57:19.625Z",
+      "updated_at": "2024-02-15T17:57:19.625Z"
+    },
+    "commute_distance": 2843.7222712416274,
+    "commute_duration": 2512.233333333333,
+    "destination_address": {
+      "id": "66f153e4-a8cb-4494-b0ae-a1e2907eb177",
+      "address": "1588 E Thomspon Blvd",
+      "created_at": "2024-02-15T17:57:19.614Z",
+      "updated_at": "2024-02-15T17:57:19.614Z"
+    },
+    "ride_distance": 319.3271776007556,
+    "ride_duration": 299.06666666666666,
+    "ride_earnings": 682.3374330678,
+    "score": 0.24271242239099353
   }
 ]
-
 ```
 
 ## Screenshot
