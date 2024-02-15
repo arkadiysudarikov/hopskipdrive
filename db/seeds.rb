@@ -19,6 +19,5 @@ Driver.find_or_create_by!(id: "e76885d9-dc50-4616-830e-cd24beefd7d9",
                           home_address: Address.all.sample)
 
 100.times do
-  Ride.find_or_create_by!(start_address: Address.all.sample,
-                          destination_address: Address.all.sample)
+  Ride.find_or_create_by(start_address: Address.all.sample, destination_address: Address.all.sample)
 end

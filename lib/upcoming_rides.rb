@@ -24,7 +24,11 @@ module UpcomingRides
       add_ride_attributes(driver, ride)
     end
 
-    upcoming_rides.sort_by { |ride| ride[:score] }.reverse
+    sort_upcoming_rides(upcoming_rides)
+  end
+
+  def sort_upcoming_rides(upcoming_rides)
+    upcoming_rides.sort_by { |ride| -ride[:score] }
   end
 
   # The directions method takes in the start and destination addresses and returns the commute
@@ -59,7 +63,7 @@ module UpcomingRides
   # Request spec for failure mode
   def call_api(origin, destination)
     JSON.parse(URI.parse(url(origin, destination)).open.read) # look into failure mode
-  rescue OpenURI::HTTPError
+  rescue URI::Error
     raise DirectionAPIError, "Unable to fetch directions. Please try again."
   end
 

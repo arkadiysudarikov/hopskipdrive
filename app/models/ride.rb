@@ -4,4 +4,6 @@
 class Ride < ApplicationRecord
   belongs_to :start_address, class_name: "Address"
   belongs_to :destination_address, class_name: "Address"
+
+  validates_comparison_of :destination_address, other_than: :start_address
 end
