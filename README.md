@@ -43,24 +43,24 @@ understand andimplement requirements.
 
 ## Specification
 
- - [ ] Create a Rails 7 application, using Ruby 3+
+ - [x] Create a Rails 7 application, using Ruby 3+
 
- - [ ] Include the following entities:
+ - [x] Include the following entities:
 
-   - [ ] Ride
-     - [ ] Has an id, a start address and a destination address. You may end up adding additional information
-   - [ ] Driver
-     - [ ] Has an id and a home address
+   - [x] Ride
+     - [x] Has an id, a start address and a destination address. You may end up adding additional information
+   - [x] Driver
+     - [x] Has an id and a home address
 
- - [ ] Build a RESTful API endpoint that returns a paginated JSON list of rides in descending score order for a given driver
+ - [x] Build a RESTful API endpoint that returns a paginated JSON list of rides in descending score order for a given driver
 
- - [ ] Please write up API documentation for this endpoint in MarkDown or alternative
+ - [x] Please write up API documentation for this endpoint in MarkDown or alternative
 
- - [ ] Calculate the score of a ride in $ per hour as: (**ride earnings**) / (**commute duration** + **ride duration**). Higher is better
+ - [x] Calculate the score of a ride in $ per hour as: (**ride earnings**) / (**commute duration** + **ride duration**). Higher is better
 
- - [ ] Google Maps is expensive. Consider how you can reduce duplicate API calls
+ - [x] Google Maps is expensive. Consider how you can reduce duplicate API calls
 
- - [ ] Include RSpec tests
+ - [x] Include RSpec tests
 
 ## Features
 
