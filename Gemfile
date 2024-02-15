@@ -46,4 +46,5 @@ group :development do
   # gem "spring"
 end
 
+gem "pagy"
 gem "rswag"
