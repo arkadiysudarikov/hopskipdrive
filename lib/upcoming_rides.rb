@@ -2,11 +2,6 @@
 
 # Description: This module is used to get the upcoming rides from the database.
 module UpcomingRides
-  class DirectionAPIError < StandardError; end
-
-  METERS_IN_A_MILE = 1609.34
-  SECONDS_IN_A_MINUTE = 60
-
   # The upcoming_rides method takes in a driver and returns the upcoming rides from the database.
   # It uses the Ride.where method to get the upcoming rides from the database.
   # It uses the map method to map the rides to a new array with the ride's attributes and additional
@@ -42,52 +37,13 @@ module UpcomingRides
     cache_key = "ride/#{start_address.id}-#{destination_address.id}/directions"
 
     Rails.cache.fetch(cache_key, expires_in: 5.minutes) do # Look to see if can call fetch_all
-      response = call_api(start_address.address, destination_address.address) # call_directions_api
+      google_directions_api_client = GoogleDirectionsApiClient.new(
+        Rails.application.credentials.google_api_key
+      )
 
-      process_response(response)
+      google_directions_api_client.get_directions(start_address.address,
+                                                  destination_address.address)
     end
-  end
-
-  # The call_api method takes in the start and destination addresses and returns the response from
-  # the Google Maps Directions API. It uses the url method to get the URL for the Google Maps
-  # Directions API.
-  # It uses the open method to open the URL and the read method to read the response.
-  # It uses the JSON.parse method to parse the response and return it.
-  # The call_api method is used by the get_directions method to get the commute distance and
-  # duration and the ride distance and duration.
-  # The call_api method is also used by the process_response method to process the response.
-  def call_api(origin, destination)
-    JSON.parse(URI.parse(url(origin, destination)).open.read) # look into failure mode
-  rescue URI::Error
-    raise DirectionAPIError, "Unable to fetch directions. Please try again."
-  end
-
-  # The URL is the Google Maps Directions API URL. It takes in the start and destination addresses
-  def url(origin, destination)
-    "https://maps.googleapis.com/maps/api/directions/json?origin=#{origin}&destination=#{destination}&key=#{Rails.application.credentials.google_api_key}"
-  end
-
-  # The process_response method takes in the response from the Google Maps Directions API and
-  # processes it. It returns the distance and duration of the route in miles and minutes
-  # respectively.
-  def process_response(response)
-    check_response(response)
-
-    route = response["routes"].first["legs"].first
-
-    [route["distance"]["value"].to_f / METERS_IN_A_MILE, # Convert meters to miles
-     route["duration"]["value"].to_f / SECONDS_IN_A_MINUTE] # Convert seconds to minutes
-  end
-
-  # The check_response method takes in the response from the Google Maps Directions API and checks
-  # if it is OK. If it is not OK, it raises a DirectionAPIError with the error message from the
-  # response.
-  # If there is no response from the Google Maps API, it raises a DirectionAPIError with the
-  # message "No response from Google Maps API".
-  # The check_response method is used by the process_response method to process the response.
-  def check_response(response)
-    raise DirectionAPIError, "Not OK" unless response["status"] == "OK"
-    raise DirectionAPIError, "Google Directioons API error" if response["error_message"].present?
   end
 
   # The add_ride_attributes method takes in a driver and a ride and returns a new hash with the

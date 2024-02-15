@@ -24,8 +24,7 @@ module Api
         pagy_headers_merge(pagy)
 
         render json: upcoming_rides
-      rescue UpcomingRides::DirectionAPIError => e
-        # e.message is only from UpcomingRides::DirectionAPIError
+      rescue DirectionsAPIError => e
         render json: { error: e.message }, status: :service_unavailable
       end
 

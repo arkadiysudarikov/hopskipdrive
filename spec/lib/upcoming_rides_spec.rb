@@ -106,25 +106,6 @@ RSpec.describe UpcomingRides do
     end
   end
 
-  describe '#call_api' do
-    it 'raises a DirectionAPIError if unable to fetch directions' do
-      stub_request(:get, "https://maps.googleapis.com/maps/api/directions/json?origin=1588 E Thompson Blvd&destination=2112 E Thompson Blvd&key=#{Rails.application.credentials.google_api_key}")
-        .with(
-          headers: headers
-        )
-        .to_return(status: 200, body: '{}', headers: {})
-
-      # Stub the OpenURI::HTTPError to be raised
-      allow(URI).to receive(:parse).and_raise(URI::Error)
-
-      # Expect the call_api method to raise a DirectionAPIError
-      expect do
-        call_api("1588 E Thompson Blvd", "2112 E Thompson Blvd")
-      end.to raise_error(UpcomingRides::DirectionAPIError,
-                         'Unable to fetch directions. Please try again.')
-    end
-  end
-
   describe '#add_ride_attributes' do
     it 'returns a hash with ride attributes and additional attributes' do
       # Stub the data method to return sample data
