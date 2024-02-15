@@ -51,7 +51,7 @@ RSpec.describe UpcomingRides do
     end
   end
 
-  describe '#directions' do
+  describe '#get_directions' do
     it 'fetches directions from the cache if available' do
       # Stub the Rails.cache.fetch method to return the cached directions
       allow(Rails.cache).to receive(:fetch).and_return([5.0, 10.0])
@@ -60,7 +60,7 @@ RSpec.describe UpcomingRides do
       address2 = instance_double(Address, id: 2, address: "2112 E Thompson Blvd")
 
       # Expect the directions method to return the cached directions
-      expect(directions(address1, address2)).to eq([5.0, 10.0])
+      expect(get_directions(address1, address2)).to eq([5.0, 10.0])
     end
 
     it 'calls the API and stores directions in the cache if not available' do
@@ -98,11 +98,11 @@ RSpec.describe UpcomingRides do
       address1 = instance_double(Address, id: 1, address: "1588 E Thompson Blvd")
       address2 = instance_double(Address, id: 2, address: "2112 E Thompson Blvd")
 
-      # Expect the directions method to call the API and store the directions in the cache
+      # Expect the get_directions method to call the API and store the directions in the cache
       expect(Rails.cache).to receive(:fetch).with(anything, expires_in: 5.minutes).and_yield
 
-      # Expect the directions method to return the fetched directions
-      expect(directions(address1, address2)).to eq([5.0, 10.0])
+      # Expect the get_directions method to return the fetched directions
+      expect(get_directions(address1, address2)).to eq([5.0, 10.0])
     end
   end
 

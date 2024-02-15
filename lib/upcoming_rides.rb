@@ -18,7 +18,6 @@ module UpcomingRides
   # It returns the upcoming rides.
   # The upcoming_rides method is used by the drivers_controller to get the upcoming rides for a
   # driver.
-  # Add unit test
   def upcoming_rides(driver, rides)
     upcoming_rides = rides.map do |ride|
       add_ride_attributes(driver, ride)
@@ -27,22 +26,19 @@ module UpcomingRides
     sort_upcoming_rides(upcoming_rides)
   end
 
+  # The sort_upcoming_rides method takes in the upcoming rides and returns the upcoming rides sorted
+  # by the score in descending order.
   def sort_upcoming_rides(upcoming_rides)
     upcoming_rides.sort_by { |ride| -ride[:score] }
   end
 
-  # The directions method takes in the start and destination addresses and returns the commute
+  # The get_directions method takes in the start and destination addresses and returns the commute
   # distance and duration and the ride distance and duration.
   # It uses the cache_key method to get the cache key for the ride's directions.
-  # It uses the Rails.cache.fetch method to fetch the directions from the cache. If the directions
-  # are not in the cache, it calls the call_api method to get the directions and stores them in the
-  # cache.
-  # It uses the process_response method to process the response from the Google Maps Directions API.
   # It returns the commute distance and duration and the ride distance and duration.
-  # The directions method is used by the add_ride_attributes method to add the ride's attributes and
-  # additional attributes to the ride.
-  # Fetch / get directions
-  def directions(start_address, destination_address)
+  # The get_directions method is used by the add_ride_attributes method to add the ride's attributes
+  # and additional attributes to the ride.
+  def get_directions(start_address, destination_address)
     cache_key = "ride/#{start_address.id}-#{destination_address.id}/directions"
 
     Rails.cache.fetch(cache_key, expires_in: 5.minutes) do # Look to see if can call fetch_all
@@ -57,10 +53,9 @@ module UpcomingRides
   # Directions API.
   # It uses the open method to open the URL and the read method to read the response.
   # It uses the JSON.parse method to parse the response and return it.
-  # The call_api method is used by the directions method to get the commute distance and duration
-  # and the ride distance and duration.
+  # The call_api method is used by the get_directions method to get the commute distance and
+  # duration and the ride distance and duration.
   # The call_api method is also used by the process_response method to process the response.
-  # Request spec for failure mode
   def call_api(origin, destination)
     JSON.parse(URI.parse(url(origin, destination)).open.read) # look into failure mode
   rescue URI::Error
@@ -126,7 +121,7 @@ module UpcomingRides
   # The data method takes in the driver's home address, the start address, and the destination
   # address, and returns a hash with the commute distance and duration, the ride distance and
   # duration, the ride earnings, and the score.
-  # It uses the directions method to get the commute distance and duration and the ride distance
+  # It uses the get_directions method to get the commute distance and duration and the ride distance
   # and duration, and the ride_earnings method to get the ride earnings.
   # It uses the score method to get the score.
   # It returns the hash with the data.
@@ -137,8 +132,8 @@ module UpcomingRides
   # The data method is also used by the add_ride_attributes method to add the ride's attributes and
   # additional attributes to the ride.
   def data(home_address, start_address, destination_address)
-    commute_distance, commute_duration = directions(home_address, start_address)
-    ride_distance, ride_duration = directions(start_address, destination_address)
+    commute_distance, commute_duration = get_directions(home_address, start_address)
+    ride_distance, ride_duration = get_directions(start_address, destination_address)
     ride_earnings = ride_earnings(ride_distance, ride_duration)
     {
       home_address: home_address, start_address: start_address, commute_distance: commute_distance,
