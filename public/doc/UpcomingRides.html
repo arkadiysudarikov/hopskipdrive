@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module UpcomingRides - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search (/) for a class, method, ..." spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    
+<!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    <li ><a href="#method-i-add_ride_attributes">#add_ride_attributes</a>
+    <li ><a href="#method-i-get_data">#get_data</a>
+    <li ><a href="#method-i-get_directions">#get_directions</a>
+    <li ><a href="#method-i-ride_earnings">#ride_earnings</a>
+    <li ><a href="#method-i-score">#score</a>
+    <li ><a href="#method-i-sort_upcoming_rides">#sort_upcoming_rides</a>
+    <li ><a href="#method-i-upcoming_rides">#upcoming_rides</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-UpcomingRides">
+  <h1 id="module-UpcomingRides" class="module">
+    module UpcomingRides
+  </h1>
+
+  <section class="description">
+    
+<p>Description: This module is used to get the upcoming rides from the database.</p>
+
+  </section>
+
+  <section id="5Buntitled-5D" class="documentation-section">
+
+
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+        <dt id="CACHE_EXPIRATION">CACHE_EXPIRATION
+        <dd><p>The <a href="UpcomingRides.html#CACHE_EXPIRATION"><code>CACHE_EXPIRATION</code></a> constant is used to set the cache expiration time for the ride’s directions.</p>
+      </dl>
+    </section>
+
+
+
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+      <div id="method-i-add_ride_attributes" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">add_ride_attributes</span><span
+              class="method-args">(driver, ride)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>The <a href="UpcomingRides.html#method-i-add_ride_attributes"><code>add_ride_attributes</code></a> method takes in a driver and a ride and returns a new hash with the ride’s attributes and additional attributes such as the driver’s home address, the commute distance and duration, the ride distance and duration, the ride earnings, and the score.</p>
+
+          <div class="method-source-code" id="add_ride_attributes-source">
+            <pre><span class="ruby-comment"># File lib/upcoming_rides.rb, line 56</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">add_ride_attributes</span>(<span class="ruby-identifier">driver</span>, <span class="ruby-identifier">ride</span>)
+  <span class="ruby-identifier">data</span> = <span class="ruby-identifier">get_data</span>(<span class="ruby-identifier">driver</span>.<span class="ruby-identifier">home_address</span>, <span class="ruby-identifier">ride</span>.<span class="ruby-identifier">start_address</span>, <span class="ruby-identifier">ride</span>.<span class="ruby-identifier">destination_address</span>)
+
+  <span class="ruby-identifier">ride</span>.<span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">data</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-get_data" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">get_data</span><span
+              class="method-args">(home_address, start_address, destination_address)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>The <a href="UpcomingRides.html#method-i-get_data"><code>get_data</code></a> method takes in the driver’s home address, the start address, and the destination address, and returns a hash with the commute distance and duration, the ride distance and duration, the ride earnings, and the score. It uses the <a href="UpcomingRides.html#method-i-get_directions"><code>get_directions</code></a> method to get the commute distance and duration and the ride distance and duration, and the <a href="UpcomingRides.html#method-i-ride_earnings"><code>ride_earnings</code></a> method to get the ride earnings. It uses the score method to get the score. It returns the hash with the data. The <a href="UpcomingRides.html#method-i-get_data"><code>get_data</code></a> method is used by the <a href="UpcomingRides.html#method-i-add_ride_attributes"><code>add_ride_attributes</code></a> method to add the ride’s attributes and additional attributes to the ride. The <a href="UpcomingRides.html#method-i-get_data"><code>get_data</code></a> method is also used by the <a href="UpcomingRides.html#method-i-upcoming_rides"><code>upcoming_rides</code></a> method to get the upcoming rides from the database. The <a href="UpcomingRides.html#method-i-get_data"><code>get_data</code></a> method is also used by the <a href="UpcomingRides.html#method-i-add_ride_attributes"><code>add_ride_attributes</code></a> method to add the ride’s attributes and additional attributes to the ride.</p>
+
+          <div class="method-source-code" id="get_data-source">
+            <pre><span class="ruby-comment"># File lib/upcoming_rides.rb, line 91</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_data</span>(<span class="ruby-identifier">home_address</span>, <span class="ruby-identifier">start_address</span>, <span class="ruby-identifier">destination_address</span>)
+  <span class="ruby-identifier">commute_distance</span>, <span class="ruby-identifier">commute_duration</span> = <span class="ruby-identifier">get_directions</span>(<span class="ruby-identifier">home_address</span>, <span class="ruby-identifier">start_address</span>)
+  <span class="ruby-identifier">ride_distance</span>, <span class="ruby-identifier">ride_duration</span> = <span class="ruby-identifier">get_directions</span>(<span class="ruby-identifier">start_address</span>, <span class="ruby-identifier">destination_address</span>)
+  <span class="ruby-identifier">ride_earnings</span> = <span class="ruby-identifier">ride_earnings</span>(<span class="ruby-identifier">ride_distance</span>, <span class="ruby-identifier">ride_duration</span>)
+  {
+    <span class="ruby-value">home_address:</span> <span class="ruby-identifier">home_address</span>, <span class="ruby-value">start_address:</span> <span class="ruby-identifier">start_address</span>, <span class="ruby-value">commute_distance:</span> <span class="ruby-identifier">commute_distance</span>,
+    <span class="ruby-value">commute_duration:</span> <span class="ruby-identifier">commute_duration</span>, <span class="ruby-value">destination_address:</span> <span class="ruby-identifier">destination_address</span>,
+    <span class="ruby-value">ride_distance:</span> <span class="ruby-identifier">ride_distance</span>, <span class="ruby-value">ride_duration:</span> <span class="ruby-identifier">ride_duration</span>, <span class="ruby-value">ride_earnings:</span> <span class="ruby-identifier">ride_earnings</span>,
+    <span class="ruby-value">score:</span> <span class="ruby-identifier">score</span>(<span class="ruby-identifier">ride_earnings</span>, <span class="ruby-identifier">commute_duration</span>, <span class="ruby-identifier">ride_duration</span>)
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-get_directions" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">get_directions</span><span
+              class="method-args">(origin, destination)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>The <a href="UpcomingRides.html#method-i-get_directions"><code>get_directions</code></a> method takes in the start and destination addresses and returns the commute distance and duration and the ride distance and duration. It uses the cache_key method to get the cache key for the ride’s directions. It returns the commute distance and duration and the ride distance and duration. The <a href="UpcomingRides.html#method-i-get_directions"><code>get_directions</code></a> method is used by the <a href="UpcomingRides.html#method-i-add_ride_attributes"><code>add_ride_attributes</code></a> method to add the ride’s attributes and additional attributes to the ride.</p>
+
+          <div class="method-source-code" id="get_directions-source">
+            <pre><span class="ruby-comment"># File lib/upcoming_rides.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_directions</span>(<span class="ruby-identifier">origin</span>, <span class="ruby-identifier">destination</span>)
+  <span class="ruby-identifier">cache_key</span> = <span class="ruby-node">&quot;ride/#{origin.id}-#{destination.id}/directions&quot;</span>
+
+  <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">cache</span>.<span class="ruby-identifier">fetch</span>(<span class="ruby-identifier">cache_key</span>, <span class="ruby-value">expires_in:</span> <span class="ruby-constant">CACHE_EXPIRATION</span>) <span class="ruby-keyword">do</span>
+    <span class="ruby-comment"># Consider dependency injection</span>
+    <span class="ruby-identifier">google_directions_api_client</span> = <span class="ruby-constant">GoogleDirectionsApiClient</span>.<span class="ruby-identifier">new</span>(
+      <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">application</span>.<span class="ruby-identifier">credentials</span>.<span class="ruby-identifier">google_api_key</span>
+    )
+
+    <span class="ruby-identifier">google_directions_api_client</span>.<span class="ruby-identifier">get_directions</span>(<span class="ruby-identifier">origin</span>.<span class="ruby-identifier">address</span>, <span class="ruby-identifier">destination</span>.<span class="ruby-identifier">address</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-ride_earnings" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">ride_earnings</span><span
+              class="method-args">(ride_distance, ride_duration)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="ride_earnings-source">
+            <pre><span class="ruby-comment"># File lib/upcoming_rides.rb, line 62</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">ride_earnings</span>(<span class="ruby-identifier">ride_distance</span>, <span class="ruby-identifier">ride_duration</span>)
+  <span class="ruby-comment"># The ride earnings is how much the driver earns by driving the ride. It takes into account</span>
+  <span class="ruby-comment"># both the amount of time the ride is expected to take and the distance. For the purposes of</span>
+  <span class="ruby-comment"># this exercise, it is calculated as:</span>
+  <span class="ruby-comment"># $12 + $1.50 per mile beyond 5 miles + (ride duration) * $0.70 per minute beyond 15 minutes</span>
+
+  <span class="ruby-value">12.0</span> <span class="ruby-operator">+</span> ([<span class="ruby-identifier">ride_distance</span> <span class="ruby-operator">-</span> <span class="ruby-value">5.0</span>, <span class="ruby-value">0.0</span>].<span class="ruby-identifier">max</span> <span class="ruby-operator">*</span> <span class="ruby-value">1.5</span>) <span class="ruby-operator">+</span> ([<span class="ruby-identifier">ride_duration</span> <span class="ruby-operator">-</span> <span class="ruby-value">15.0</span>, <span class="ruby-value">0.0</span>].<span class="ruby-identifier">max</span> <span class="ruby-operator">*</span> <span class="ruby-value">0.7</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-score" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">score</span><span
+              class="method-args">(ride_earnings, commute_duration, ride_duration)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>The score is a metric that takes into account the ride earnings, the commute duration, and the ride duration. It is calculated as the ride earnings divided by the sum of the commute duration and the ride duration.</p>
+
+          <div class="method-source-code" id="score-source">
+            <pre><span class="ruby-comment"># File lib/upcoming_rides.rb, line 74</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">score</span>(<span class="ruby-identifier">ride_earnings</span>, <span class="ruby-identifier">commute_duration</span>, <span class="ruby-identifier">ride_duration</span>)
+  <span class="ruby-identifier">ride_earnings</span> <span class="ruby-operator">/</span> (<span class="ruby-identifier">commute_duration</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">ride_duration</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-sort_upcoming_rides" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">sort_upcoming_rides</span><span
+              class="method-args">(upcoming_rides)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>The <a href="UpcomingRides.html#method-i-sort_upcoming_rides"><code>sort_upcoming_rides</code></a> method takes in the upcoming rides and returns the upcoming rides sorted by the score in descending order.</p>
+
+          <div class="method-source-code" id="sort_upcoming_rides-source">
+            <pre><span class="ruby-comment"># File lib/upcoming_rides.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">sort_upcoming_rides</span>(<span class="ruby-identifier">upcoming_rides</span>)
+  <span class="ruby-identifier">upcoming_rides</span>.<span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">ride</span><span class="ruby-operator">|</span> <span class="ruby-operator">-</span><span class="ruby-identifier">ride</span>[<span class="ruby-value">:score</span>] }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-upcoming_rides" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">upcoming_rides</span><span
+              class="method-args">(driver, rides)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>The <a href="UpcomingRides.html#method-i-upcoming_rides"><code>upcoming_rides</code></a> method takes in a driver and returns the upcoming rides from the database. It uses the Ride.where method to get the upcoming rides from the database. It uses the map method to map the rides to a new array with the ride’s attributes and additional attributes such as the driver’s home address, the commute distance and duration, the ride distance and duration, the ride earnings, and the score. It uses the <a href="UpcomingRides.html#method-i-add_ride_attributes"><code>add_ride_attributes</code></a> method to add the ride’s attributes and additional attributes to the ride. It uses the sort_by method to sort the rides by the score in descending order. It returns the upcoming rides. The <a href="UpcomingRides.html#method-i-upcoming_rides"><code>upcoming_rides</code></a> method is used by the drivers_controller to get the upcoming rides for a driver.</p>
+
+          <div class="method-source-code" id="upcoming_rides-source">
+            <pre><span class="ruby-comment"># File lib/upcoming_rides.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">upcoming_rides</span>(<span class="ruby-identifier">driver</span>, <span class="ruby-identifier">rides</span>)
+  <span class="ruby-identifier">upcoming_rides</span> = <span class="ruby-identifier">rides</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ride</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">add_ride_attributes</span>(<span class="ruby-identifier">driver</span>, <span class="ruby-identifier">ride</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">sort_upcoming_rides</span>(<span class="ruby-identifier">upcoming_rides</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.6.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

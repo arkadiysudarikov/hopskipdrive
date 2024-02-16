@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>README - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search (/) for a class, method, ..." spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+
+
+  <ul class="link-list" role="directory">
+              <li>
+            <details open>
+              <summary>      <a href="#label-HopSkipDrive+Drivers+API">HopSkipDrive Drivers API</a>
+</summary>
+              <ul class="link-list" role="directory">
+                          <li>      <a href="#label-Description">Description</a>
+          <li>      <a href="#label-Definitions">Definitions</a>
+          <li>      <a href="#label-Prompt">Prompt</a>
+          <li>      <a href="#label-Specification">Specification</a>
+          <li>      <a href="#label-Features">Features</a>
+          <li>      <a href="#label-Technologies+Used">Technologies Used</a>
+          <li>      <a href="#label-Installation">Installation</a>
+          <li>      <a href="#label-Usage">Usage</a>
+          <li>      <a href="#label-API+Endpoints">API Endpoints</a>
+          <li>      <a href="#label-Screenshot">Screenshot</a>
+          <li>      <a href="#label-Contributing">Contributing</a>
+          <li>      <a href="#label-License">License</a>
+          <li>      <a href="#label-Contact">Contact</a>
+
+              </ul>
+            </details>
+          </li>
+
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    
+<div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+    <li><a href="./Gemfile.html">Gemfile</a>
+    <li><a href="./Gemfile_lock.html">Gemfile.lock</a>
+    <li><a href="./Procfile.html">Procfile</a>
+    <li><a href="./README_md.html">README</a>
+    <li><a href="./Rakefile.html">Rakefile</a>
+    <li><a href="./config_ru.html">config.ru</a>
+    <li><details><summary>config</summary>
+    <ul class="link-list">
+      <li><a href="./config/credentials_yml_enc.html">credentials.yml.enc</a>
+      <li><a href="./config/master_key.html">master.key</a>
+    </ul></details>
+    <li><details><summary>coverage</summary>
+    <ul class="link-list">
+      <li><a href="./coverage/assets/0_12_3/application_css.html">application.css</a>
+      <li><a href="./coverage/assets/0_12_3/application_js.html">application.js</a>
+      <li><a href="./coverage/index_html.html">index.html</a>
+    </ul></details>
+    <li><details><summary>log</summary>
+    <ul class="link-list">
+      <li><a href="./log/development_log.html">development.log</a>
+      <li><a href="./log/test_log.html">test.log</a>
+    </ul></details>
+    <li><a href="./public/robots_txt.html">robots</a>
+    <li><a href="./swagger/v1/swagger_yaml.html">swagger.yaml</a>
+    <li><details><summary>tmp</summary>
+    <ul class="link-list">
+      <li><a href="./tmp/caching-dev_txt.html">caching-dev</a>
+      <li><a href="./tmp/local_secret_txt.html">local_secret</a>
+      <li><a href="./tmp/restart_txt.html">restart</a>
+    </ul></details>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page README.md">
+
+<h1 id="label-HopSkipDrive+Drivers+API">HopSkipDrive Drivers API<span><a href="#label-HopSkipDrive+Drivers+API">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p>&lt;img width=“257” alt=“HopSkipDrive” src=“<a href="https://github.com/arkadiysudarikov/hopskipdrive/assets/382532/8f0304d0-23cc-4aea-b3d4-1da00d5e9ebd">github.com/arkadiysudarikov/hopskipdrive/assets/382532/8f0304d0-23cc-4aea-b3d4-1da00d5e9ebd</a>”&gt;</p>
+
+<p>HopSkipDrive API for drivers.</p>
+
+<h2 id="label-Description">Description<span><a href="#label-Description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre>Unlike many other rideshares, HopSkipDrive is a scheduled ride service and not an on-demand ride service.
+In our app for drivers, we show them a list of upcoming rides and they can pick the ones they want.
+Our goal is to show them the best rides for each driver first, so to that end we have an internal scoring system.
+In this exercise you will be implementing a slimmed down version of it</pre>
+
+<h2 id="label-Definitions">Definitions<span><a href="#label-Definitions">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>The <strong>driving distance</strong> between two addresses is the distance in miles that it would take to drive a reasonably efficient route between them. It is not the straight line distance. It can be calculated by using a routing service</p>
+
+<p>The <strong>driving duration</strong> between two addresses is the amount of time in hours it would take to drive the driving distance under realistic driving conditions. It can be calculated by using a routing service</p>
+
+<p>The <strong>commute distance</strong> for a ride is the driving distance from the driver’s home address to the start of the ride, in miles</p>
+
+<p>The <strong>commute duration</strong> for a ride is the amount of time it is expected to take to drive the commute distance, in hours.</p>
+
+<p>The <strong>ride distance</strong> for a ride is the driving distance from the start address of the ride to the destination address, in miles</p>
+
+<p>The <strong>ride duration</strong> for a ride is the amount of time it is expected to take to drive the ride distance, in hours</p>
+
+<p>The <strong>ride earnings</strong> is how much the driver earns by driving the ride. It takes into account both the amount of time the ride is expected to take and the distance.</p>
+
+<p>For the purposes of this exercise, it is calculated as: $12 + $1.50 per mile beyond 5 miles + (<strong>ride duration</strong>) * $0.70 per minute beyond 15 minutes</p>
+
+<h2 id="label-Prompt">Prompt<span><a href="#label-Prompt">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre>The primary goal of this exercise is for you to demonstrate how you think about testing,
+readability,and structuring a Rails application. We are also evaluating your ability to
+understand andimplement requirements.</pre>
+
+<h2 id="label-Specification">Specification<span><a href="#label-Specification">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>[x] Create a Rails 7 application, using Ruby 3+</p>
+</li><li>
+<p>[x] Include the following entities:</p>
+</li><li>
+<p>[x] <a href="Ride.html"><code>Ride</code></a></p>
+<ul><li>
+<p>[x] Has an id, a start address and a destination address. You may end up adding additional information</p>
+</li></ul>
+</li><li>
+<p>[x] <a href="Driver.html"><code>Driver</code></a></p>
+<ul><li>
+<p>[x] Has an id and a home address</p>
+</li></ul>
+</li><li>
+<p>[x] Build a RESTful API endpoint that returns a paginated JSON list of rides in descending score order for a given driver</p>
+</li><li>
+<p>[x] Please write up API documentation for this endpoint in MarkDown or alternative</p>
+</li><li>
+<p>[x] Calculate the score of a ride in $ per hour as: (<strong>ride earnings</strong>) / (<strong>commute duration</strong> + <strong>ride duration</strong>). Higher is better</p>
+</li><li>
+<p>[x] Google Maps is expensive. Consider how you can reduce duplicate API calls</p>
+</li><li>
+<p>[x] Include RSpec tests</p>
+</li></ul>
+
+<h2 id="label-Features">Features<span><a href="#label-Features">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>Implements the upcoming rides endpoint to be used by the driver’s app.</p>
+</li></ul>
+
+<h2 id="label-Technologies+Used">Technologies Used<span><a href="#label-Technologies+Used">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>Ruby on Rails</p>
+</li><li>
+<p>PostgreSQL</p>
+</li><li>
+<p>OpenAPI</p>
+</li></ul>
+
+<h2 id="label-Installation">Installation<span><a href="#label-Installation">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ol><li>
+<p>Clone the repository: <code>git clone https://github.com/arkadiysudarikov/hopskipdrive.git</code></p>
+</li><li>
+<p>Install dependencies: <code>bundle install</code></p>
+</li><li>
+<p>Set up the database: <code>rails db:setup</code></p>
+</li><li>
+<p>Start the server: <code>rails server</code></p>
+</li></ol>
+
+<h2 id="label-Usage">Usage<span><a href="#label-Usage">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Please refer to the project’s <a href="https://hopskipdrive-fa2a8e6ce701.herokuapp.com/api-docs/index.html">OpenAPI specicificaiton. </a>.</p>
+
+<h2 id="label-API+Endpoints">API Endpoints<span><a href="#label-API+Endpoints">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p><code>/api/v1/drivers/{driver_id}/upcoming_rides</code></p>
+
+<p><code>/api/v1/{driver_id}/upcoming_rides</code></p>
+
+<pre class="ruby">[
+  {
+    <span class="ruby-value">&quot;id&quot;:</span> <span class="ruby-string">&quot;da5f475d-c0b4-499e-8b75-14fd447df007&quot;</span>,
+    <span class="ruby-value">&quot;start_address_id&quot;:</span> <span class="ruby-string">&quot;23ecb6ef-ec09-4469-97b8-feec0c930f88&quot;</span>,
+    <span class="ruby-value">&quot;destination_address_id&quot;:</span> <span class="ruby-string">&quot;2cd75452-a2e2-466f-92c0-8a1e49711fab&quot;</span>,
+    <span class="ruby-value">&quot;created_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.700Z&quot;</span>,
+    <span class="ruby-value">&quot;updated_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.700Z&quot;</span>,
+    <span class="ruby-value">&quot;home_address&quot;:</span> {
+      <span class="ruby-value">&quot;id&quot;:</span> <span class="ruby-string">&quot;2cd75452-a2e2-466f-92c0-8a1e49711fab&quot;</span>,
+      <span class="ruby-value">&quot;address&quot;:</span> <span class="ruby-string">&quot;1600 Pennsylvania Ave&quot;</span>,
+      <span class="ruby-value">&quot;created_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.620Z&quot;</span>,
+      <span class="ruby-value">&quot;updated_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.620Z&quot;</span>
+    },
+    <span class="ruby-value">&quot;start_address&quot;:</span> {
+      <span class="ruby-value">&quot;id&quot;:</span> <span class="ruby-string">&quot;23ecb6ef-ec09-4469-97b8-feec0c930f88&quot;</span>,
+      <span class="ruby-value">&quot;address&quot;:</span> <span class="ruby-string">&quot;1600 Amphitheatre Pkwy&quot;</span>,
+      <span class="ruby-value">&quot;created_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.625Z&quot;</span>,
+      <span class="ruby-value">&quot;updated_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.625Z&quot;</span>
+    },
+    <span class="ruby-value">&quot;commute_distance&quot;:</span> <span class="ruby-value">2843.7222712416274</span>,
+    <span class="ruby-value">&quot;commute_duration&quot;:</span> <span class="ruby-value">2512.233333333333</span>,
+    <span class="ruby-value">&quot;destination_address&quot;:</span> {
+      <span class="ruby-value">&quot;id&quot;:</span> <span class="ruby-string">&quot;2cd75452-a2e2-466f-92c0-8a1e49711fab&quot;</span>,
+      <span class="ruby-value">&quot;address&quot;:</span> <span class="ruby-string">&quot;1600 Pennsylvania Ave&quot;</span>,
+      <span class="ruby-value">&quot;created_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.620Z&quot;</span>,
+      <span class="ruby-value">&quot;updated_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.620Z&quot;</span>
+    },
+    <span class="ruby-value">&quot;ride_distance&quot;:</span> <span class="ruby-value">2849.750208159867</span>,
+    <span class="ruby-value">&quot;ride_duration&quot;:</span> <span class="ruby-value">2509.9666666666667</span>,
+    <span class="ruby-value">&quot;ride_earnings&quot;:</span> <span class="ruby-value">6025.601978906467</span>,
+    <span class="ruby-value">&quot;score&quot;:</span> <span class="ruby-value">1.199793313469489</span>
+  },
+  {
+    <span class="ruby-value">&quot;id&quot;:</span> <span class="ruby-string">&quot;68e339e4-ed2a-4cf5-bb4a-406b901a0d15&quot;</span>,
+    <span class="ruby-value">&quot;start_address_id&quot;:</span> <span class="ruby-string">&quot;23ecb6ef-ec09-4469-97b8-feec0c930f88&quot;</span>,
+    <span class="ruby-value">&quot;destination_address_id&quot;:</span> <span class="ruby-string">&quot;66f153e4-a8cb-4494-b0ae-a1e2907eb177&quot;</span>,
+    <span class="ruby-value">&quot;created_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.664Z&quot;</span>,
+    <span class="ruby-value">&quot;updated_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.664Z&quot;</span>,
+    <span class="ruby-value">&quot;home_address&quot;:</span> {
+      <span class="ruby-value">&quot;id&quot;:</span> <span class="ruby-string">&quot;2cd75452-a2e2-466f-92c0-8a1e49711fab&quot;</span>,
+      <span class="ruby-value">&quot;address&quot;:</span> <span class="ruby-string">&quot;1600 Pennsylvania Ave&quot;</span>,
+      <span class="ruby-value">&quot;created_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.620Z&quot;</span>,
+      <span class="ruby-value">&quot;updated_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.620Z&quot;</span>
+    },
+    <span class="ruby-value">&quot;start_address&quot;:</span> {
+      <span class="ruby-value">&quot;id&quot;:</span> <span class="ruby-string">&quot;23ecb6ef-ec09-4469-97b8-feec0c930f88&quot;</span>,
+      <span class="ruby-value">&quot;address&quot;:</span> <span class="ruby-string">&quot;1600 Amphitheatre Pkwy&quot;</span>,
+      <span class="ruby-value">&quot;created_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.625Z&quot;</span>,
+      <span class="ruby-value">&quot;updated_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.625Z&quot;</span>
+    },
+    <span class="ruby-value">&quot;commute_distance&quot;:</span> <span class="ruby-value">2843.7222712416274</span>,
+    <span class="ruby-value">&quot;commute_duration&quot;:</span> <span class="ruby-value">2512.233333333333</span>,
+    <span class="ruby-value">&quot;destination_address&quot;:</span> {
+      <span class="ruby-value">&quot;id&quot;:</span> <span class="ruby-string">&quot;66f153e4-a8cb-4494-b0ae-a1e2907eb177&quot;</span>,
+      <span class="ruby-value">&quot;address&quot;:</span> <span class="ruby-string">&quot;1588 E Thomspon Blvd&quot;</span>,
+      <span class="ruby-value">&quot;created_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.614Z&quot;</span>,
+      <span class="ruby-value">&quot;updated_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.614Z&quot;</span>
+    },
+    <span class="ruby-value">&quot;ride_distance&quot;:</span> <span class="ruby-value">319.3271776007556</span>,
+    <span class="ruby-value">&quot;ride_duration&quot;:</span> <span class="ruby-value">299.06666666666666</span>,
+    <span class="ruby-value">&quot;ride_earnings&quot;:</span> <span class="ruby-value">682.3374330678</span>,
+    <span class="ruby-value">&quot;score&quot;:</span> <span class="ruby-value">0.24271242239099353</span>
+  }
+]
+</pre>
+
+<h2 id="label-Screenshot">Screenshot<span><a href="#label-Screenshot">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p><img src="https://github.com/arkadiysudarikov/hopskipdrive/assets/382532/875ea5a6-ee02-4349-837f-9329af08422d"></p>
+
+<h2 id="label-Contributing">Contributing<span><a href="#label-Contributing">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>If you’d like to contribute to this project, please follow these steps:</p>
+<ol><li>
+<p>Fork the repository</p>
+</li><li>
+<p>Create a new branch: <code>git checkout -b feature/your-feature</code></p>
+</li><li>
+<p>Make your changes and commit them: <code>git commit -am &#39;Add some feature&#39;</code></p>
+</li><li>
+<p>Push to the branch: <code>git push origin feature/your-feature</code></p>
+</li><li>
+<p>Submit a pull request</p>
+</li></ol>
+
+<h2 id="label-License">License<span><a href="#label-License">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>This project is licensed under the MIT License - see the <a href="LICENSE">LICENSE</a> file for details.</p>
+
+<h2 id="label-Contact">Contact<span><a href="#label-Contact">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>Your Name - <a href="mailto:arkadiy@arkadiy.com">arkadiy@arkadiy.com</a></p>
+</li><li>
+<p>Project Link: <a href="https://github.com/arkadiysudarikov/hopskipdrive">github.com/arkadiysudarikov/hopskipdrive</a></p>
+</li></ul>
+
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.6.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
