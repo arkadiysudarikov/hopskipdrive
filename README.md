@@ -135,73 +135,78 @@ Please refer to the project's [OpenAPI specificaiton.
 ```json
 [
   {
-    "id": "da5f475d-c0b4-499e-8b75-14fd447df007",
-    "start_address_id": "23ecb6ef-ec09-4469-97b8-feec0c930f88",
-    "destination_address_id": "2cd75452-a2e2-466f-92c0-8a1e49711fab",
-    "created_at": "2024-02-15T17:57:19.700Z",
-    "updated_at": "2024-02-15T17:57:19.700Z",
+    "id": "f6420103-f79e-4b8e-9cd7-c6f0f523948c",
+    "start_address_id": "9b6e17ca-9543-452e-98cd-9423c2c36923",
+    "destination_address_id": "943d2863-d62d-4426-9b62-c8c697fc97e3",
+    "created_at": "2024-02-16T04:33:32.839Z",
+    "updated_at": "2024-02-16T04:33:32.839Z",
     "home_address": {
-      "id": "2cd75452-a2e2-466f-92c0-8a1e49711fab",
-      "address": "1600 Pennsylvania Ave",
-      "created_at": "2024-02-15T17:57:19.620Z",
-      "updated_at": "2024-02-15T17:57:19.620Z"
+      "id": "943d2863-d62d-4426-9b62-c8c697fc97e3",
+      "address": "1600 Amphitheatre Pkwy",
+      "created_at": "2024-02-16T04:33:32.790Z",
+      "updated_at": "2024-02-16T04:33:32.790Z"
     },
     "start_address": {
-      "id": "23ecb6ef-ec09-4469-97b8-feec0c930f88",
-      "address": "1600 Amphitheatre Pkwy",
-      "created_at": "2024-02-15T17:57:19.625Z",
-      "updated_at": "2024-02-15T17:57:19.625Z"
+      "id": "9b6e17ca-9543-452e-98cd-9423c2c36923",
+      "address": "1588 E Thomspon Blvd",
+      "created_at": "2024-02-16T04:33:32.781Z",
+      "updated_at": "2024-02-16T04:33:32.781Z"
     },
-    "commute_distance": 2843.7222712416274,
-    "commute_duration": 2512.233333333333,
+    "commute_distance": 319.3271776007556,
+    "commute_duration": 299.06666666666666,
     "destination_address": {
-      "id": "2cd75452-a2e2-466f-92c0-8a1e49711fab",
-      "address": "1600 Pennsylvania Ave",
-      "created_at": "2024-02-15T17:57:19.620Z",
-      "updated_at": "2024-02-15T17:57:19.620Z"
+      "id": "943d2863-d62d-4426-9b62-c8c697fc97e3",
+      "address": "1600 Amphitheatre Pkwy",
+      "created_at": "2024-02-16T04:33:32.790Z",
+      "updated_at": "2024-02-16T04:33:32.790Z"
     },
-    "ride_distance": 2849.750208159867,
-    "ride_duration": 2509.9666666666667,
-    "ride_earnings": 6025.601978906467,
-    "score": 1.199793313469489
+    "ride_distance": 319.08670635167215,
+    "ride_duration": 295.2,
+    "ride_earnings": 679.2700595275082,
+    "score": 1.1430391398825022
   },
   {
-    "id": "68e339e4-ed2a-4cf5-bb4a-406b901a0d15",
-    "start_address_id": "23ecb6ef-ec09-4469-97b8-feec0c930f88",
-    "destination_address_id": "66f153e4-a8cb-4494-b0ae-a1e2907eb177",
-    "created_at": "2024-02-15T17:57:19.664Z",
-    "updated_at": "2024-02-15T17:57:19.664Z",
+    "id": "4d2a3d65-2477-4c42-904d-fea7c329250d",
+    "start_address_id": "a1f1b68a-9010-4820-a3b5-c8e22c331ad0",
+    "destination_address_id": "943d2863-d62d-4426-9b62-c8c697fc97e3",
+    "created_at": "2024-02-16T04:33:32.853Z",
+    "updated_at": "2024-02-16T04:33:32.853Z",
     "home_address": {
-      "id": "2cd75452-a2e2-466f-92c0-8a1e49711fab",
-      "address": "1600 Pennsylvania Ave",
-      "created_at": "2024-02-15T17:57:19.620Z",
-      "updated_at": "2024-02-15T17:57:19.620Z"
+      "id": "943d2863-d62d-4426-9b62-c8c697fc97e3",
+      "address": "1600 Amphitheatre Pkwy",
+      "created_at": "2024-02-16T04:33:32.790Z",
+      "updated_at": "2024-02-16T04:33:32.790Z"
     },
     "start_address": {
-      "id": "23ecb6ef-ec09-4469-97b8-feec0c930f88",
-      "address": "1600 Amphitheatre Pkwy",
-      "created_at": "2024-02-15T17:57:19.625Z",
-      "updated_at": "2024-02-15T17:57:19.625Z"
+      "id": "a1f1b68a-9010-4820-a3b5-c8e22c331ad0",
+      "address": "2112 E Thompson Blvd",
+      "created_at": "2024-02-16T04:33:32.794Z",
+      "updated_at": "2024-02-16T04:33:32.794Z"
     },
-    "commute_distance": 2843.7222712416274,
-    "commute_duration": 2512.233333333333,
+    "commute_distance": 319.79444989871627,
+    "commute_duration": 299.98333333333335,
     "destination_address": {
-      "id": "66f153e4-a8cb-4494-b0ae-a1e2907eb177",
-      "address": "1588 E Thomspon Blvd",
-      "created_at": "2024-02-15T17:57:19.614Z",
-      "updated_at": "2024-02-15T17:57:19.614Z"
+      "id": "943d2863-d62d-4426-9b62-c8c697fc97e3",
+      "address": "1600 Amphitheatre Pkwy",
+      "created_at": "2024-02-16T04:33:32.790Z",
+      "updated_at": "2024-02-16T04:33:32.790Z"
     },
-    "ride_distance": 319.3271776007556,
-    "ride_duration": 299.06666666666666,
-    "ride_earnings": 682.3374330678,
-    "score": 0.24271242239099353
+    "ride_distance": 319.55397864963277,
+    "ride_duration": 296.0833333333333,
+    "ride_earnings": 680.5893013077824,
+    "score": 1.141800639706603
   }
 ]
 ```
 
 ## Screenshot
 
-![Screenshot 2024-02-15 at 09 35 33 (2)](https://github.com/arkadiysudarikov/hopskipdrive/assets/382532/875ea5a6-ee02-4349-837f-9329af08422d)
+![Screenshot 2024-02-15 at 20 36 01 (2)](https://github.com/arkadiysudarikov/hopskipdrive/assets/382532/d4bc4daa-6f21-4ff9-b1c1-659a9060ca7c)
+
+
+<img width="1680" alt="Screenshot 2024-02-15 at 20 24 48" src="https://github.com/arkadiysudarikov/hopskipdrive/assets/382532/492f1e95-c867-4dc1-a274-b1c6b5bd0884">
+
+
 
 ## Contributing
 
