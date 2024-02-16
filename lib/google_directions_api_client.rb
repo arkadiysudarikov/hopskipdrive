@@ -7,17 +7,23 @@ class DirectionsAPIError < StandardError; end
 # GoogleDirectionsApiClient is a service class that fetches directions from the Google Directions
 # API
 class GoogleDirectionsApiClient
+  # BASE_URL is the base URL for the Google Directions API
   BASE_URL = "https://maps.googleapis.com/maps/api/directions/json"
 
+  # METERS_IN_A_MILE is the number of meters in a mile
   METERS_IN_A_MILE = 1609.34
+  # SECONDS_IN_A_MINUTE is the number of seconds in a minute
   SECONDS_IN_A_MINUTE = 60.0
 
+  # GOOGLE_DIRECTIONS_API_ERROR is the error message when the Google Directions API returns an error
   GOOGLE_DIRECTIONS_API_ERROR = "Google Directions API Error"
 
+  # api_key is the Google Directions API key
   def initialize(api_key)
     @api_key = api_key
   end
 
+  # get_directions fetches directions from the Google Directions API
   def get_directions(origin, destination)
     url = build_url(origin, destination)
 
