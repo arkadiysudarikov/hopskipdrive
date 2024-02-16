@@ -92,6 +92,12 @@ Here are some of the decisions I made:
 
 * I use Pagy gem for pagination.  Handles pagination via the query parameter and headers. 
 
+## Assumptions 
+
+I tried to make few assumptions but here they are: 
+
+  * Ride start and destination addresses cannot be the same. 
+
 ## Gems for calling APIs
 
 Libraries provide benefits such as retries, improved error-handling and backoff and should be used in production environments. 
@@ -110,7 +116,8 @@ I considered using various libraries but ultimately decided to make a simple cal
 2. Install dependencies: `bundle install`
 3. Set up the database: `rails db:setup`
 4. Run RSpec: `rspec`
-5. Start the server: `rails server`
+5. Run Rails Credentials to add `google_api_key`: `rails credentials:edit`
+6. Start the server: `rails server`
 
 ## Documentation
 
