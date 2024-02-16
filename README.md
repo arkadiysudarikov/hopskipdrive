@@ -68,9 +68,7 @@ understand and implement requirements.
 
 ## Design Decisions
 
-For this project I ended up making some design decisions to keep the project on track while developing the application. 
-
-Here are some of the decisions I made: 
+For this project I ended up making some design decisions to keep the project on track while developing the application: 
 
  * I decided to use UUID for all IDs to increase information security. 
 
