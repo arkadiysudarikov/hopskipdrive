@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>swagger.yaml - RDoc Documentation</title>
+<title>server.pid - RDoc Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../../";
@@ -79,7 +79,7 @@
     </ul></details>
     <li><a href="../../public/robots_txt.html">robots</a>
     <li><a href="../../swagger/v1/swagger_yaml.html">swagger.yaml</a>
-    <li><details><summary>tmp</summary>
+    <li><details open><summary>tmp</summary>
     <ul class="link-list">
       <li><a href="../../tmp/caching-dev_txt.html">caching-dev</a>
       <li><a href="../../tmp/local_secret_txt.html">local_secret</a>
@@ -92,55 +92,9 @@
   </div>
 </nav>
 
-<main role="main" aria-label="Page swagger/v1/swagger.yaml">
-<hr>
+<main role="main" aria-label="Page tmp/pids/server.pid">
 
-<p>openapi: 3.0.1 info:</p>
-
-<pre>title: API V1
-version: v1</pre>
-
-<p>paths:</p>
-
-<pre>&quot;/api/v1/drivers/{driver_id}/upcoming_rides&quot;:
-  parameters:
-  - name: driver_id
-    in: path
-    description: Driver ID
-    required: true
-    schema:
-      type: string
-  - name: page
-    in: query
-    description: Page number
-    schema:
-      type: string
-  get:
-    summary: list upcoming rides
-    responses:
-      &#39;200&#39;:
-        description: Successful
-      &#39;404&#39;:
-        description: Not Found
-      &#39;400&#39;:
-        description: Bad Request
-      &#39;500&#39;:
-        description: Internal Server Error
-      &#39;503&#39;:
-        description: Service Unavailable</pre>
-
-<p>servers:</p>
-<ul><li>
-<p>url: <a href="https://hopskipdrive-fa2a8e6ce701.herokuapp.com">hopskipdrive-fa2a8e6ce701.herokuapp.com</a> variables:</p>
-
-<pre>defaultHost:
-  default: https://hopskipdrive-fa2a8e6ce701.herokuapp.com</pre>
-</li><li>
-<p>url: <a href="http://localhost:3000">localhost:3000</a> variables:</p>
-
-<pre>defaultHost:
-  default: http://localhost:3000</pre>
-</li></ul>
+<p>17689</p>
 
 </main>
 

@@ -70,9 +70,13 @@
           <li>      <a href="#label-Prompt">Prompt</a>
           <li>      <a href="#label-Specification">Specification</a>
           <li>      <a href="#label-Features">Features</a>
+          <li>      <a href="#label-Design+Decisions">Design Decisions</a>
+          <li>      <a href="#label-Assumptions">Assumptions</a>
+          <li>      <a href="#label-Gems+for+calling+APIs">Gems for calling APIs</a>
           <li>      <a href="#label-Technologies+Used">Technologies Used</a>
           <li>      <a href="#label-Installation">Installation</a>
-          <li>      <a href="#label-Usage">Usage</a>
+          <li>      <a href="#label-Documentation">Documentation</a>
+          <li>      <a href="#label-APU+Usage">APU Usage</a>
           <li>      <a href="#label-API+Endpoints">API Endpoints</a>
           <li>      <a href="#label-Screenshot">Screenshot</a>
           <li>      <a href="#label-Contributing">Contributing</a>
@@ -104,12 +108,6 @@
       <li><a href="./config/credentials_yml_enc.html">credentials.yml.enc</a>
       <li><a href="./config/master_key.html">master.key</a>
     </ul></details>
-    <li><details><summary>coverage</summary>
-    <ul class="link-list">
-      <li><a href="./coverage/assets/0_12_3/application_css.html">application.css</a>
-      <li><a href="./coverage/assets/0_12_3/application_js.html">application.js</a>
-      <li><a href="./coverage/index_html.html">index.html</a>
-    </ul></details>
     <li><details><summary>log</summary>
     <ul class="link-list">
       <li><a href="./log/development_log.html">development.log</a>
@@ -121,6 +119,7 @@
     <ul class="link-list">
       <li><a href="./tmp/caching-dev_txt.html">caching-dev</a>
       <li><a href="./tmp/local_secret_txt.html">local_secret</a>
+      <li><a href="./tmp/pids/server_pid.html">server.pid</a>
       <li><a href="./tmp/restart_txt.html">restart</a>
     </ul></details>
   </ul>
@@ -165,8 +164,8 @@ In this exercise you will be implementing a slimmed down version of it</pre>
 <h2 id="label-Prompt">Prompt<span><a href="#label-Prompt">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
 <pre>The primary goal of this exercise is for you to demonstrate how you think about testing,
-readability,and structuring a Rails application. We are also evaluating your ability to
-understand andimplement requirements.</pre>
+readability, and structuring a Rails application. We are also evaluating your ability to
+understand and implement requirements.</pre>
 
 <h2 id="label-Specification">Specification<span><a href="#label-Specification">&para;</a> <a href="#top">&uarr;</a></span></h2>
 <ul><li>
@@ -200,6 +199,63 @@ understand andimplement requirements.</pre>
 <p>Implements the upcoming rides endpoint to be used by the driver’s app.</p>
 </li></ul>
 
+<h2 id="label-Design+Decisions">Design Decisions<span><a href="#label-Design+Decisions">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>For this project I ended up making some design decisions to keep the project on track while developing the application:</p>
+<ul><li>
+<p>I decided to use UUID for all IDs to increase information security.</p>
+</li><li>
+<p><a href="Address.html"><code>Address</code></a> table holds addresses for drivers and rides</p>
+<ul><li>
+<p><a href="Address.html"><code>Address</code></a> is a string that is valid for Google Directions API</p>
+<ul><li>
+<p>Location ID should be used in production to accurately query the same locations</p>
+</li><li>
+<p>Google Place ID is an example of an ID that can be used to identify addresses</p>
+</li></ul>
+</li></ul>
+</li></ul>
+
+<p>Similar addresses that share a location ID (potentially stored in a long-lived, distributed Solid Cache) can be used by both <a href="Driver.html"><code>Driver</code></a> and <a href="Ride.html"><code>Ride</code></a> and used in the API call to get commute and ride distance and duration.</p>
+<ul><li>
+<p>I use the Rails Credentials to keep the Google Directions API Key secure in both development and production.</p>
+</li><li>
+<p>Because I'm working with two entities, <a href="Driver.html"><code>Driver</code></a> and <a href="Ride.html"><code>Ride</code></a>, I decided to use a module for the methods.</p>
+</li><li>
+<p>I decided to create a client class to call the Google Directions API.</p>
+</li><li>
+<p>I decided to use RSwag to provide OpenAPI UI compliance for the endpoint.</p>
+</li><li>
+<p>I use <a href="Pagy.html"><code>Pagy</code></a> gem for pagination.</p>
+</li><li>
+<p>It handles pagination via the query parameter and headers.</p>
+<ul><li>
+<p>I set the default to be 5 items per page.</p>
+</li></ul>
+</li><li>
+<p>I decided to cache the data returned for 5 minutes at a time.</p>
+</li><li>
+<p>I think the new Solid Cache can a great candidate for storing data returned from the Google API.</p>
+<ul><li>
+<p>I think cache can be kept warm between the server restarts to continue to provide fast response from the server.</p>
+</li></ul>
+</li><li>
+<p>I considered adding the “pickup time” to the upcoming rides but for demo purposes I decided to leave it out so that rides can be retrieved at any time in the future.</p>
+</li></ul>
+
+<h2 id="label-Assumptions">Assumptions<span><a href="#label-Assumptions">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>I tried to make few assumptions but here they are:</p>
+<ul><li>
+<p><a href="Ride.html"><code>Ride</code></a> start and destination addresses cannot be the same.</p>
+</li></ul>
+
+<h2 id="label-Gems+for+calling+APIs">Gems for calling APIs<span><a href="#label-Gems+for+calling+APIs">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Libraries provide benefits such as retries, improved error-handling and backoff and should be used in production environments.</p>
+
+<p>I considered using various libraries but ultimately decided to make a simple call instead for this project.</p>
+
 <h2 id="label-Technologies+Used">Technologies Used<span><a href="#label-Technologies+Used">&para;</a> <a href="#top">&uarr;</a></span></h2>
 <ul><li>
 <p>Ruby on Rails</p>
@@ -217,88 +273,105 @@ understand andimplement requirements.</pre>
 </li><li>
 <p>Set up the database: <code>rails db:setup</code></p>
 </li><li>
+<p>Run Rails Credentials to add <code>google_api_key</code>: <code>rails credentials:edit</code></p>
+</li><li>
+<p>Run RSpec: <code>rspec</code></p>
+</li><li>
 <p>Start the server: <code>rails server</code></p>
 </li></ol>
 
-<h2 id="label-Usage">Usage<span><a href="#label-Usage">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<h2 id="label-Documentation">Documentation<span><a href="#label-Documentation">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
-<p>Please refer to the project’s <a href="https://hopskipdrive-fa2a8e6ce701.herokuapp.com/api-docs/index.html">OpenAPI specicificaiton. </a>.</p>
+<p><a href="https://hopskipdrive-fa2a8e6ce701.herokuapp.com/coverage/#_AllFiles">Code coverage</a></p>
+
+<p><a href="https://hopskipdrive-fa2a8e6ce701.herokuapp.com/doc/UpcomingRides.html">UpcomingRides</a> (RDoc)</p>
+
+<p><a href="https://hopskipdrive-fa2a8e6ce701.herokuapp.com/doc/GoogleDirectionsApiClient.html">GoogleDirectionsApiClient</a> (RDoc)</p>
+
+<h2 id="label-APU+Usage">APU Usage<span><a href="#label-APU+Usage">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Please refer to the project’s <a href="https://hopskipdrive-fa2a8e6ce701.herokuapp.com/api-docs/index.html">OpenAPI specification</a> for the project.</p>
+<ul><li>
+<p>I seed the database with a <a href="Driver.html"><code>Driver</code></a> ID <code>e76885d9-dc50-4616-830e-cd24beefd7d9</code> that can be used to try out the endpoint.</p>
+</li></ul>
 
 <h2 id="label-API+Endpoints">API Endpoints<span><a href="#label-API+Endpoints">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
-<p><code>/api/v1/drivers/{driver_id}/upcoming_rides</code></p>
-
-<p><code>/api/v1/{driver_id}/upcoming_rides</code></p>
+<p>I offer both <code>/api/v1/drivers/{driver_id}/upcoming_rides</code> and <code>/api/v1/{driver_id}/upcoming_rides</code> endpoints.</p>
 
 <pre class="ruby">[
   {
-    <span class="ruby-value">&quot;id&quot;:</span> <span class="ruby-string">&quot;da5f475d-c0b4-499e-8b75-14fd447df007&quot;</span>,
-    <span class="ruby-value">&quot;start_address_id&quot;:</span> <span class="ruby-string">&quot;23ecb6ef-ec09-4469-97b8-feec0c930f88&quot;</span>,
-    <span class="ruby-value">&quot;destination_address_id&quot;:</span> <span class="ruby-string">&quot;2cd75452-a2e2-466f-92c0-8a1e49711fab&quot;</span>,
-    <span class="ruby-value">&quot;created_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.700Z&quot;</span>,
-    <span class="ruby-value">&quot;updated_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.700Z&quot;</span>,
+    <span class="ruby-value">&quot;id&quot;:</span> <span class="ruby-string">&quot;f6420103-f79e-4b8e-9cd7-c6f0f523948c&quot;</span>,
+    <span class="ruby-value">&quot;start_address_id&quot;:</span> <span class="ruby-string">&quot;9b6e17ca-9543-452e-98cd-9423c2c36923&quot;</span>,
+    <span class="ruby-value">&quot;destination_address_id&quot;:</span> <span class="ruby-string">&quot;943d2863-d62d-4426-9b62-c8c697fc97e3&quot;</span>,
+    <span class="ruby-value">&quot;created_at&quot;:</span> <span class="ruby-string">&quot;2024-02-16T04:33:32.839Z&quot;</span>,
+    <span class="ruby-value">&quot;updated_at&quot;:</span> <span class="ruby-string">&quot;2024-02-16T04:33:32.839Z&quot;</span>,
     <span class="ruby-value">&quot;home_address&quot;:</span> {
-      <span class="ruby-value">&quot;id&quot;:</span> <span class="ruby-string">&quot;2cd75452-a2e2-466f-92c0-8a1e49711fab&quot;</span>,
-      <span class="ruby-value">&quot;address&quot;:</span> <span class="ruby-string">&quot;1600 Pennsylvania Ave&quot;</span>,
-      <span class="ruby-value">&quot;created_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.620Z&quot;</span>,
-      <span class="ruby-value">&quot;updated_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.620Z&quot;</span>
+      <span class="ruby-value">&quot;id&quot;:</span> <span class="ruby-string">&quot;943d2863-d62d-4426-9b62-c8c697fc97e3&quot;</span>,
+      <span class="ruby-value">&quot;address&quot;:</span> <span class="ruby-string">&quot;1600 Amphitheatre Pkwy&quot;</span>,
+      <span class="ruby-value">&quot;created_at&quot;:</span> <span class="ruby-string">&quot;2024-02-16T04:33:32.790Z&quot;</span>,
+      <span class="ruby-value">&quot;updated_at&quot;:</span> <span class="ruby-string">&quot;2024-02-16T04:33:32.790Z&quot;</span>
     },
     <span class="ruby-value">&quot;start_address&quot;:</span> {
-      <span class="ruby-value">&quot;id&quot;:</span> <span class="ruby-string">&quot;23ecb6ef-ec09-4469-97b8-feec0c930f88&quot;</span>,
-      <span class="ruby-value">&quot;address&quot;:</span> <span class="ruby-string">&quot;1600 Amphitheatre Pkwy&quot;</span>,
-      <span class="ruby-value">&quot;created_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.625Z&quot;</span>,
-      <span class="ruby-value">&quot;updated_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.625Z&quot;</span>
+      <span class="ruby-value">&quot;id&quot;:</span> <span class="ruby-string">&quot;9b6e17ca-9543-452e-98cd-9423c2c36923&quot;</span>,
+      <span class="ruby-value">&quot;address&quot;:</span> <span class="ruby-string">&quot;1588 E Thomspon Blvd&quot;</span>,
+      <span class="ruby-value">&quot;created_at&quot;:</span> <span class="ruby-string">&quot;2024-02-16T04:33:32.781Z&quot;</span>,
+      <span class="ruby-value">&quot;updated_at&quot;:</span> <span class="ruby-string">&quot;2024-02-16T04:33:32.781Z&quot;</span>
     },
-    <span class="ruby-value">&quot;commute_distance&quot;:</span> <span class="ruby-value">2843.7222712416274</span>,
-    <span class="ruby-value">&quot;commute_duration&quot;:</span> <span class="ruby-value">2512.233333333333</span>,
+    <span class="ruby-value">&quot;commute_distance&quot;:</span> <span class="ruby-value">319.3271776007556</span>,
+    <span class="ruby-value">&quot;commute_duration&quot;:</span> <span class="ruby-value">4.984444444444445</span>,
     <span class="ruby-value">&quot;destination_address&quot;:</span> {
-      <span class="ruby-value">&quot;id&quot;:</span> <span class="ruby-string">&quot;2cd75452-a2e2-466f-92c0-8a1e49711fab&quot;</span>,
-      <span class="ruby-value">&quot;address&quot;:</span> <span class="ruby-string">&quot;1600 Pennsylvania Ave&quot;</span>,
-      <span class="ruby-value">&quot;created_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.620Z&quot;</span>,
-      <span class="ruby-value">&quot;updated_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.620Z&quot;</span>
+      <span class="ruby-value">&quot;id&quot;:</span> <span class="ruby-string">&quot;943d2863-d62d-4426-9b62-c8c697fc97e3&quot;</span>,
+      <span class="ruby-value">&quot;address&quot;:</span> <span class="ruby-string">&quot;1600 Amphitheatre Pkwy&quot;</span>,
+      <span class="ruby-value">&quot;created_at&quot;:</span> <span class="ruby-string">&quot;2024-02-16T04:33:32.790Z&quot;</span>,
+      <span class="ruby-value">&quot;updated_at&quot;:</span> <span class="ruby-string">&quot;2024-02-16T04:33:32.790Z&quot;</span>
     },
-    <span class="ruby-value">&quot;ride_distance&quot;:</span> <span class="ruby-value">2849.750208159867</span>,
-    <span class="ruby-value">&quot;ride_duration&quot;:</span> <span class="ruby-value">2509.9666666666667</span>,
-    <span class="ruby-value">&quot;ride_earnings&quot;:</span> <span class="ruby-value">6025.601978906467</span>,
-    <span class="ruby-value">&quot;score&quot;:</span> <span class="ruby-value">1.199793313469489</span>
+    <span class="ruby-value">&quot;ride_distance&quot;:</span> <span class="ruby-value">319.08670635167215</span>,
+    <span class="ruby-value">&quot;ride_duration&quot;:</span> <span class="ruby-value">4.92</span>,
+    <span class="ruby-value">&quot;ride_earnings&quot;:</span> <span class="ruby-value">483.13005952750825</span>,
+    <span class="ruby-value">&quot;score&quot;:</span> <span class="ruby-value">48.77911752016575</span>
   },
   {
-    <span class="ruby-value">&quot;id&quot;:</span> <span class="ruby-string">&quot;68e339e4-ed2a-4cf5-bb4a-406b901a0d15&quot;</span>,
-    <span class="ruby-value">&quot;start_address_id&quot;:</span> <span class="ruby-string">&quot;23ecb6ef-ec09-4469-97b8-feec0c930f88&quot;</span>,
-    <span class="ruby-value">&quot;destination_address_id&quot;:</span> <span class="ruby-string">&quot;66f153e4-a8cb-4494-b0ae-a1e2907eb177&quot;</span>,
-    <span class="ruby-value">&quot;created_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.664Z&quot;</span>,
-    <span class="ruby-value">&quot;updated_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.664Z&quot;</span>,
+    <span class="ruby-value">&quot;id&quot;:</span> <span class="ruby-string">&quot;4d2a3d65-2477-4c42-904d-fea7c329250d&quot;</span>,
+    <span class="ruby-value">&quot;start_address_id&quot;:</span> <span class="ruby-string">&quot;a1f1b68a-9010-4820-a3b5-c8e22c331ad0&quot;</span>,
+    <span class="ruby-value">&quot;destination_address_id&quot;:</span> <span class="ruby-string">&quot;943d2863-d62d-4426-9b62-c8c697fc97e3&quot;</span>,
+    <span class="ruby-value">&quot;created_at&quot;:</span> <span class="ruby-string">&quot;2024-02-16T04:33:32.853Z&quot;</span>,
+    <span class="ruby-value">&quot;updated_at&quot;:</span> <span class="ruby-string">&quot;2024-02-16T04:33:32.853Z&quot;</span>,
     <span class="ruby-value">&quot;home_address&quot;:</span> {
-      <span class="ruby-value">&quot;id&quot;:</span> <span class="ruby-string">&quot;2cd75452-a2e2-466f-92c0-8a1e49711fab&quot;</span>,
-      <span class="ruby-value">&quot;address&quot;:</span> <span class="ruby-string">&quot;1600 Pennsylvania Ave&quot;</span>,
-      <span class="ruby-value">&quot;created_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.620Z&quot;</span>,
-      <span class="ruby-value">&quot;updated_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.620Z&quot;</span>
+      <span class="ruby-value">&quot;id&quot;:</span> <span class="ruby-string">&quot;943d2863-d62d-4426-9b62-c8c697fc97e3&quot;</span>,
+      <span class="ruby-value">&quot;address&quot;:</span> <span class="ruby-string">&quot;1600 Amphitheatre Pkwy&quot;</span>,
+      <span class="ruby-value">&quot;created_at&quot;:</span> <span class="ruby-string">&quot;2024-02-16T04:33:32.790Z&quot;</span>,
+      <span class="ruby-value">&quot;updated_at&quot;:</span> <span class="ruby-string">&quot;2024-02-16T04:33:32.790Z&quot;</span>
     },
     <span class="ruby-value">&quot;start_address&quot;:</span> {
-      <span class="ruby-value">&quot;id&quot;:</span> <span class="ruby-string">&quot;23ecb6ef-ec09-4469-97b8-feec0c930f88&quot;</span>,
-      <span class="ruby-value">&quot;address&quot;:</span> <span class="ruby-string">&quot;1600 Amphitheatre Pkwy&quot;</span>,
-      <span class="ruby-value">&quot;created_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.625Z&quot;</span>,
-      <span class="ruby-value">&quot;updated_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.625Z&quot;</span>
+      <span class="ruby-value">&quot;id&quot;:</span> <span class="ruby-string">&quot;a1f1b68a-9010-4820-a3b5-c8e22c331ad0&quot;</span>,
+      <span class="ruby-value">&quot;address&quot;:</span> <span class="ruby-string">&quot;2112 E Thompson Blvd&quot;</span>,
+      <span class="ruby-value">&quot;created_at&quot;:</span> <span class="ruby-string">&quot;2024-02-16T04:33:32.794Z&quot;</span>,
+      <span class="ruby-value">&quot;updated_at&quot;:</span> <span class="ruby-string">&quot;2024-02-16T04:33:32.794Z&quot;</span>
     },
-    <span class="ruby-value">&quot;commute_distance&quot;:</span> <span class="ruby-value">2843.7222712416274</span>,
-    <span class="ruby-value">&quot;commute_duration&quot;:</span> <span class="ruby-value">2512.233333333333</span>,
+    <span class="ruby-value">&quot;commute_distance&quot;:</span> <span class="ruby-value">319.79444989871627</span>,
+    <span class="ruby-value">&quot;commute_duration&quot;:</span> <span class="ruby-value">4.999722222222222</span>,
     <span class="ruby-value">&quot;destination_address&quot;:</span> {
-      <span class="ruby-value">&quot;id&quot;:</span> <span class="ruby-string">&quot;66f153e4-a8cb-4494-b0ae-a1e2907eb177&quot;</span>,
-      <span class="ruby-value">&quot;address&quot;:</span> <span class="ruby-string">&quot;1588 E Thomspon Blvd&quot;</span>,
-      <span class="ruby-value">&quot;created_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.614Z&quot;</span>,
-      <span class="ruby-value">&quot;updated_at&quot;:</span> <span class="ruby-string">&quot;2024-02-15T17:57:19.614Z&quot;</span>
+      <span class="ruby-value">&quot;id&quot;:</span> <span class="ruby-string">&quot;943d2863-d62d-4426-9b62-c8c697fc97e3&quot;</span>,
+      <span class="ruby-value">&quot;address&quot;:</span> <span class="ruby-string">&quot;1600 Amphitheatre Pkwy&quot;</span>,
+      <span class="ruby-value">&quot;created_at&quot;:</span> <span class="ruby-string">&quot;2024-02-16T04:33:32.790Z&quot;</span>,
+      <span class="ruby-value">&quot;updated_at&quot;:</span> <span class="ruby-string">&quot;2024-02-16T04:33:32.790Z&quot;</span>
     },
-    <span class="ruby-value">&quot;ride_distance&quot;:</span> <span class="ruby-value">319.3271776007556</span>,
-    <span class="ruby-value">&quot;ride_duration&quot;:</span> <span class="ruby-value">299.06666666666666</span>,
-    <span class="ruby-value">&quot;ride_earnings&quot;:</span> <span class="ruby-value">682.3374330678</span>,
-    <span class="ruby-value">&quot;score&quot;:</span> <span class="ruby-value">0.24271242239099353</span>
+    <span class="ruby-value">&quot;ride_distance&quot;:</span> <span class="ruby-value">319.55397864963277</span>,
+    <span class="ruby-value">&quot;ride_duration&quot;:</span> <span class="ruby-value">4.934722222222222</span>,
+    <span class="ruby-value">&quot;ride_earnings&quot;:</span> <span class="ruby-value">483.83096797444915</span>,
+    <span class="ruby-value">&quot;score&quot;:</span> <span class="ruby-value">48.70236787574144</span>
   }
 ]
 </pre>
 
+<p><code>ride_distance</code> is in miles. <code>ride_duration</code> is in hours. <code>ride_earnings</code> is in USD. <code>score</code> is in USD/hour.</p>
+
 <h2 id="label-Screenshot">Screenshot<span><a href="#label-Screenshot">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
-<p><img src="https://github.com/arkadiysudarikov/hopskipdrive/assets/382532/875ea5a6-ee02-4349-837f-9329af08422d"></p>
+<p><img src="https://github.com/arkadiysudarikov/hopskipdrive/assets/382532/d4bc4daa-6f21-4ff9-b1c1-659a9060ca7c"></p>
+
+<p>&lt;img width=“1680” alt=“Screenshot 2024-02-15 at 20 24 48” src=“<a href="https://github.com/arkadiysudarikov/hopskipdrive/assets/382532/492f1e95-c867-4dc1-a274-b1c6b5bd0884">github.com/arkadiysudarikov/hopskipdrive/assets/382532/492f1e95-c867-4dc1-a274-b1c6b5bd0884</a>”&gt;</p>
 
 <h2 id="label-Contributing">Contributing<span><a href="#label-Contributing">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
@@ -321,7 +394,7 @@ understand andimplement requirements.</pre>
 
 <h2 id="label-Contact">Contact<span><a href="#label-Contact">&para;</a> <a href="#top">&uarr;</a></span></h2>
 <ul><li>
-<p>Your Name - <a href="mailto:arkadiy@arkadiy.com">arkadiy@arkadiy.com</a></p>
+<p>Arkadiy Sudarikov - <a href="mailto:arkadiy@arkadiy.com">arkadiy@arkadiy.com</a></p>
 </li><li>
 <p>Project Link: <a href="https://github.com/arkadiysudarikov/hopskipdrive">github.com/arkadiysudarikov/hopskipdrive</a></p>
 </li></ul>
