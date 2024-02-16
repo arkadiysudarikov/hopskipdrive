@@ -20,6 +20,8 @@ paths:
     get:
       summary: list upcoming rides
       responses:
+        '200':
+          description: Successful
         '404':
           description: Not Found
 servers:
