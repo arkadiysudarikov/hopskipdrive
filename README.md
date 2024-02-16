@@ -66,8 +66,6 @@ understand and implement requirements.
 
 - Implements the upcoming rides endpoint to be used by the driver's app. 
 
-
-
 ## Design Decisions
 
 For this project I ended up making some design decisions to keep the project on track while developing the application. 
@@ -78,11 +76,11 @@ Here are some of the decisions I made:
 
  * Address table holds addresses for drivers and rides
     * Address is a string that is valid for Google Directions API 
-        * Location ID 
-          * Google Place ID
+        * Location ID should be used in production to 
+          * Google Place ID is an example of an ID that can be used to identify addresses
+
    Similar addresses that share a location ID (potentially stored in a long-lived, distributed Solid Cache) can be used by both Driver and Ride and used in the API call to get commute and ride distance and duration. 
 
-   
 * I use the Rails Credentials to keep the Google Directions API Key secure in both development and production. 
 
 * Because I'm working with two entities, Driver and Ride, I decided to use a module for the methods. 
