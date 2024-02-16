@@ -94,6 +94,7 @@ For this project I ended up making some design decisions to keep the project on 
 
 * I decided to cache the data returned for 5 minutes at a time. 
   * I think the new Solid Cache can a great candidate for storing data returned from the Google API. 
+    * I think cache can be kept warm between the server restarts to continue to provide fast response from the server. 
 
 * I considered adding the "pickup time" to the upcoming rides but for demo purposes I decided to leave it out so that rides can be retrieved at any time in the future. 
 
