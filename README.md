@@ -132,7 +132,7 @@ I considered using various libraries but ultimately decided to make a simple cal
 
 [GoogleDirectionsApiClient](https://hopskipdrive-fa2a8e6ce701.herokuapp.com/doc/GoogleDirectionsApiClient.html) (RDoc)
 
-## Usage
+## APU Usage
 
 Please refer to the project's [OpenAPI specification](https://hopskipdrive-fa2a8e6ce701.herokuapp.com/api-docs/index.html) for the project. 
 
