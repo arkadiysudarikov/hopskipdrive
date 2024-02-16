@@ -91,6 +91,10 @@ Here are some of the decisions I made:
 * I decided to use RSwag to provide OpenAPI UI compliance for the endpoint.
 
 * I use Pagy gem for pagination.  Handles pagination via the query parameter and headers. 
+   * I set the default to be 5 items per page. 
+
+* I decided to cache the data returned for 5 minutes at a time. 
+  * I think the new Solid Cache can a great candidate for storing data returned from the Google API. 
 
 ## Assumptions 
 
