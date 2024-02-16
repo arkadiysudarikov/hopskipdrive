@@ -164,7 +164,7 @@ I offer both `/api/v1/drivers/{driver_id}/upcoming_rides` and `/api/v1/{driver_i
       "updated_at": "2024-02-16T04:33:32.781Z"
     },
     "commute_distance": 319.3271776007556,
-    "commute_duration": 299.06666666666666,
+    "commute_duration": 4.984444444444445,
     "destination_address": {
       "id": "943d2863-d62d-4426-9b62-c8c697fc97e3",
       "address": "1600 Amphitheatre Pkwy",
@@ -172,9 +172,9 @@ I offer both `/api/v1/drivers/{driver_id}/upcoming_rides` and `/api/v1/{driver_i
       "updated_at": "2024-02-16T04:33:32.790Z"
     },
     "ride_distance": 319.08670635167215,
-    "ride_duration": 295.2,
-    "ride_earnings": 679.2700595275082,
-    "score": 1.1430391398825022
+    "ride_duration": 4.92,
+    "ride_earnings": 483.13005952750825,
+    "score": 48.77911752016575
   },
   {
     "id": "4d2a3d65-2477-4c42-904d-fea7c329250d",
@@ -195,7 +195,7 @@ I offer both `/api/v1/drivers/{driver_id}/upcoming_rides` and `/api/v1/{driver_i
       "updated_at": "2024-02-16T04:33:32.794Z"
     },
     "commute_distance": 319.79444989871627,
-    "commute_duration": 299.98333333333335,
+    "commute_duration": 4.999722222222222,
     "destination_address": {
       "id": "943d2863-d62d-4426-9b62-c8c697fc97e3",
       "address": "1600 Amphitheatre Pkwy",
@@ -203,9 +203,9 @@ I offer both `/api/v1/drivers/{driver_id}/upcoming_rides` and `/api/v1/{driver_i
       "updated_at": "2024-02-16T04:33:32.790Z"
     },
     "ride_distance": 319.55397864963277,
-    "ride_duration": 296.0833333333333,
-    "ride_earnings": 680.5893013077824,
-    "score": 1.141800639706603
+    "ride_duration": 4.934722222222222,
+    "ride_earnings": 483.83096797444915,
+    "score": 48.70236787574144
   }
 ]
 ```
