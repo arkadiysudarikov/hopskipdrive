@@ -20,6 +20,10 @@ module Api
         render json: upcoming_rides
       rescue DirectionsAPIError => e
         render json: { error: e.message }, status: :service_unavailable
+      rescue Pagy::OverflowError
+        render json: { error: "Page out of range" }, status: :bad_request
+      rescue Pagy::VariableError
+        render json: { error: "{}" }, status: :internal_server_error
       end
 
       private

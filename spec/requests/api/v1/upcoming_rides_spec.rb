@@ -92,6 +92,36 @@ RSpec.describe 'api/v1/upcoming_rides' do
 
         run_test!
       end
+
+      response(400, "Bad Request") do
+        let(:driver_id) { 'e76885d9-dc50-4616-830e-cd24beefd7d9' }
+        let(:page) { 2 }
+
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+
+        run_test!
+      end
+
+      response(500, "Internal Server Error") do
+        let(:driver_id) { 'e76885d9-dc50-4616-830e-cd24beefd7d9' }
+        let(:page) { 0 }
+
+        after do |example|
+          example.metadata[:response][:content] = {
+            'application/json' => {
+              example: JSON.parse(response.body, symbolize_names: true)
+            }
+          }
+        end
+
+        run_test!
+      end
     end
   end
 end
