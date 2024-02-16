@@ -122,8 +122,8 @@ I considered using various libraries but ultimately decided to make a simple cal
 1. Clone the repository: `git clone https://github.com/arkadiysudarikov/hopskipdrive.git`
 2. Install dependencies: `bundle install`
 3. Set up the database: `rails db:setup`
-4. Run RSpec: `rspec`
-5. Run Rails Credentials to add `google_api_key`: `rails credentials:edit`
+4. Run Rails Credentials to add `google_api_key`: `rails credentials:edit`
+5. Run RSpec: `rspec`
 6. Start the server: `rails server`
 
 ## Documentation
