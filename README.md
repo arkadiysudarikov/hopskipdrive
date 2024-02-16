@@ -124,7 +124,7 @@ I considered using various libraries but ultimately decided to make a simple cal
 
 ## Usage
 
-Please refer to the project's [OpenAPI](https://hopskipdrive-fa2a8e6ce701.herokuapp.com/api-docs/index.html) specification. 
+Please refer to the project's [OpenAPI specification](https://hopskipdrive-fa2a8e6ce701.herokuapp.com/api-docs/index.html) for the project. 
 
   * I seed the database with a Driver ID `e76885d9-dc50-4616-830e-cd24beefd7d9` that can be used to try out the endpoint.
 
