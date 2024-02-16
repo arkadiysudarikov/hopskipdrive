@@ -117,8 +117,10 @@ I considered using various libraries but ultimately decided to make a simple cal
 ## Documentation
 
 [Code coverage](https://hopskipdrive-fa2a8e6ce701.herokuapp.com/coverage/#_AllFiles)
+
 [UpcomingRides](https://hopskipdrive-fa2a8e6ce701.herokuapp.com/doc/UpcomingRides.html) (RDoc)
-[GoogleDirectionsApiClient](https://hopskipdrive-fa2a8e6ce701.herokuapp.com/doc/GoogleDirectionsApiClient.html)
+
+[GoogleDirectionsApiClient](https://hopskipdrive-fa2a8e6ce701.herokuapp.com/doc/GoogleDirectionsApiClient.html) (RDoc)
 
 ## Usage
 
