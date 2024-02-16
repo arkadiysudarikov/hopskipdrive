@@ -143,7 +143,6 @@ Please refer to the project's [OpenAPI specification](https://hopskipdrive-fa2a8
 
 I offer both `/api/v1/drivers/{driver_id}/upcoming_rides` and `/api/v1/{driver_id}/upcoming_rides` endpoints. 
 
-
 ```json
 [
   {
@@ -210,6 +209,10 @@ I offer both `/api/v1/drivers/{driver_id}/upcoming_rides` and `/api/v1/{driver_i
   }
 ]
 ```
+
+`ride_distance` is in miles.
+`ride_duration` is in minutes. 
+`ride_earnings` is in USD. 
 
 ## Screenshot
 
