@@ -37,8 +37,8 @@ module UpcomingRides
   # It returns the commute distance and duration and the ride distance and duration.
   # The get_directions method is used by the add_ride_attributes method to add the ride's attributes
   # and additional attributes to the ride.
-  def get_directions(start_address, destination_address)
-    cache_key = "ride/#{start_address.id}-#{destination_address.id}/directions"
+  def get_directions(origin, destination)
+    cache_key = "ride/#{origin.id}-#{destination.id}/directions"
 
     Rails.cache.fetch(cache_key, expires_in: CACHE_EXPIRATION) do
       # Consider dependency injection
@@ -46,8 +46,7 @@ module UpcomingRides
         Rails.application.credentials.google_api_key
       )
 
-      google_directions_api_client.get_directions(start_address.address,
-                                                  destination_address.address)
+      google_directions_api_client.get_directions(origin.address, destination.address)
     end
   end
 
