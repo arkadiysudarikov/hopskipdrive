@@ -37,8 +37,8 @@ For the purposes of this exercise, it is calculated as: $12 + $1.50 per mile bey
 
 ```
 The primary goal of this exercise is for you to demonstrate how you think about testing,
-readability,and structuring a Rails application. We are also evaluating your ability to
-understand andimplement requirements.
+readability, and structuring a Rails application. We are also evaluating your ability to
+understand and implement requirements.
 ```
 
 ## Specification
@@ -66,6 +66,46 @@ understand andimplement requirements.
 
 - Implements the upcoming rides endpoint to be used by the driver's app. 
 
+
+## Design Decisions
+
+
+
+UUID for IDs 
+
+Address table holds addresses for drivers and rides
+ Address is a string that is valid for Google Directions API 
+  Location ID 
+   Google Place ID
+
+   Similar addresses that share a location ID (potentially stored in a long-lived, distributed Solid Cache) can be used by both Driver and Ride and used in the API call to get commute and ride distance and duration. 
+
+   
+
+
+
+Rails Credentials 
+
+
+
+Skinny controller, fat module. 
+
+Client Class 
+
+
+RSwag to provide OpenAPI UI
+
+
+Pagy for pagination 
+ Add data to headers 
+
+ 
+
+## Gems for calling APIs
+
+Faraday / excon / HTTP clients / etc. 
+
+
 ## Technologies Used
 
 - Ruby on Rails
@@ -77,11 +117,12 @@ understand andimplement requirements.
 1. Clone the repository: `git clone https://github.com/arkadiysudarikov/hopskipdrive.git`
 2. Install dependencies: `bundle install`
 3. Set up the database: `rails db:setup`
-4. Start the server: `rails server`
+4. Run RSpec: `rspec`
+5. Start the server: `rails server`
 
 ## Usage
 
-Please refer to the project's [OpenAPI specicificaiton. 
+Please refer to the project's [OpenAPI specificaiton. 
 ](https://hopskipdrive-fa2a8e6ce701.herokuapp.com/api-docs/index.html). 
 
 ## API Endpoints
