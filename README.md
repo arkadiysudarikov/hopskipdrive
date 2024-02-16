@@ -67,44 +67,38 @@ understand and implement requirements.
 - Implements the upcoming rides endpoint to be used by the driver's app. 
 
 
+
 ## Design Decisions
 
+For this project I ended up making some design decisions to keep the project on track while developing the application. 
 
+Here are some of the decisions I made: 
 
-UUID for IDs 
+ * I decided to use UUID for all IDs to increase information security. 
 
-Address table holds addresses for drivers and rides
- Address is a string that is valid for Google Directions API 
-  Location ID 
-   Google Place ID
-
+ * Address table holds addresses for drivers and rides
+    * Address is a string that is valid for Google Directions API 
+        * Location ID 
+          * Google Place ID
    Similar addresses that share a location ID (potentially stored in a long-lived, distributed Solid Cache) can be used by both Driver and Ride and used in the API call to get commute and ride distance and duration. 
 
    
+* I use the Rails Credentials to keep the Google Directions API Key secure in both development and production. 
+
+* Because I'm working with two entities, Driver and Ride, I decided to use a module for the methods. 
+
+* I decided to create a client class to call the Google Directions API. 
 
 
+* I decided to use RSwag to provide OpenAPI UI compliance for the endpoint.
 
-Rails Credentials 
-
-
-
-Skinny controller, fat module. 
-
-Client Class 
-
-
-RSwag to provide OpenAPI UI
-
-
-Pagy for pagination 
- Add data to headers 
-
- 
+* I use Pagy gem for pagination.  Handles pagination via the query parameter and headers. 
 
 ## Gems for calling APIs
 
-Faraday / excon / HTTP clients / etc. 
+Libraries provide benefits such as retries, improved error-handling and backoff and should be used in production environments. 
 
+I considered using various libraries but ultimately decided to make a simple call instead for this project. 
 
 ## Technologies Used
 
@@ -120,16 +114,21 @@ Faraday / excon / HTTP clients / etc.
 4. Run RSpec: `rspec`
 5. Start the server: `rails server`
 
+## Documentation
+
+[Code coverage](https://hopskipdrive-fa2a8e6ce701.herokuapp.com/coverage/#_AllFiles)
+[UpcomingRides](https://hopskipdrive-fa2a8e6ce701.herokuapp.com/doc/UpcomingRides.html) (RDoc)
+[GoogleDirectionsApiClient](https://hopskipdrive-fa2a8e6ce701.herokuapp.com/doc/GoogleDirectionsApiClient.html)
+
 ## Usage
 
-Please refer to the project's [OpenAPI specificaiton. 
-](https://hopskipdrive-fa2a8e6ce701.herokuapp.com/api-docs/index.html). 
+Please refer to the project's [OpenAPI](https://hopskipdrive-fa2a8e6ce701.herokuapp.com/api-docs/index.html) specification. 
+
+  * I seed the database with a Driver ID `e76885d9-dc50-4616-830e-cd24beefd7d9` that can be used to try out the endpoint.
 
 ## API Endpoints
 
-`/api/v1/drivers/{driver_id}/upcoming_rides`
-
-`/api/v1/{driver_id}/upcoming_rides`
+I offer both `/api/v1/drivers/{driver_id}/upcoming_rides` and `/api/v1/{driver_id}/upcoming_rides` endpoints. 
 
 
 ```json
@@ -224,5 +223,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-- Your Name - [arkadiy@arkadiy.com](mailto:arkadiy@arkadiy.com)
+- Arkadiy Sudarikov - [arkadiy@arkadiy.com](mailto:arkadiy@arkadiy.com)
 - Project Link: [https://github.com/arkadiysudarikov/hopskipdrive](https://github.com/arkadiysudarikov/hopskipdrive)
