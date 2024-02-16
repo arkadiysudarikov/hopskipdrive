@@ -30,13 +30,11 @@ RSpec.describe GoogleDirectionsApiClient do
                  {
                     "distance" :
                     {
-                       "text" : "0.5 mi",
                        "value" : 8046.7
                     },
                     "duration" :
                     {
-                       "text" : "1 min",
-                       "value" : 600
+                       "value" : 36000
                     }
                  }
               ]

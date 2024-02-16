@@ -12,8 +12,8 @@ class GoogleDirectionsApiClient
 
   # METERS_IN_A_MILE is the number of meters in a mile
   METERS_IN_A_MILE = 1609.34
-  # SECONDS_IN_A_MINUTE is the number of seconds in a minute
-  SECONDS_IN_A_MINUTE = 60.0
+  # SECONDS_IN_AN_HOUR is the number of seconds in an hour
+  SECONDS_IN_AN_HOUR = 3600.0
 
   # GOOGLE_DIRECTIONS_API_ERROR is the error message when the Google Directions API returns an error
   GOOGLE_DIRECTIONS_API_ERROR = "Google Directions API Error"
@@ -55,6 +55,6 @@ class GoogleDirectionsApiClient
     route = response["routes"].first["legs"].first
 
     [route["distance"]["value"].to_f / METERS_IN_A_MILE, # Convert meters to miles
-     route["duration"]["value"].to_f / SECONDS_IN_A_MINUTE] # Convert seconds to minutes
+     route["duration"]["value"].to_f / SECONDS_IN_AN_HOUR] # Convert seconds to hours
   end
 end
