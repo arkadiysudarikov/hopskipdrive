@@ -96,6 +96,8 @@ Here are some of the decisions I made:
 * I decided to cache the data returned for 5 minutes at a time. 
   * I think the new Solid Cache can a great candidate for storing data returned from the Google API. 
 
+* I considered adding the "pickup time" to the upcoming rides but for demo purposes I decided to leave it out so that rides can be retrieved at any time in the future. 
+
 ## Assumptions 
 
 I tried to make few assumptions but here they are: 
