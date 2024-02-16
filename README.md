@@ -76,7 +76,7 @@ Here are some of the decisions I made:
 
  * Address table holds addresses for drivers and rides
     * Address is a string that is valid for Google Directions API 
-        * Location ID should be used in production to 
+        * Location ID should be used in production to accurately query the same locations
           * Google Place ID is an example of an ID that can be used to identify addresses
 
    Similar addresses that share a location ID (potentially stored in a long-lived, distributed Solid Cache) can be used by both Driver and Ride and used in the API call to get commute and ride distance and duration. 
