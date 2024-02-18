@@ -65,7 +65,7 @@ module UpcomingRides
     # this exercise, it is calculated as:
     # $12 + $1.50 per mile beyond 5 miles + (ride duration) * $0.70 per minute beyond 15 minutes
 
-    12.0 + ([ride_distance - 5.0, 0.0].max * 1.5) + ([ride_duration - 15.0, 0.0].max * 0.7)
+    12.0 + ([ride_distance - 5.0, 0.0].max * 1.5) + ([(ride_duration * 60) - 15.0, 0.0].max * 0.7)
   end
 
   # The score is a metric that takes into account the ride earnings, the commute duration, and the

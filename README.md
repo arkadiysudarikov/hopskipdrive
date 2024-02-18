@@ -146,66 +146,66 @@ I offer both `/api/v1/drivers/{driver_id}/upcoming_rides` and `/api/v1/{driver_i
 ```json
 [
   {
-    "id": "f6420103-f79e-4b8e-9cd7-c6f0f523948c",
-    "start_address_id": "9b6e17ca-9543-452e-98cd-9423c2c36923",
-    "destination_address_id": "943d2863-d62d-4426-9b62-c8c697fc97e3",
-    "created_at": "2024-02-16T04:33:32.839Z",
-    "updated_at": "2024-02-16T04:33:32.839Z",
+    "id": "b2d27489-27ab-4334-9940-6ae9eccbe0f1",
+    "start_address_id": "c23bfaad-5633-4d4b-a36b-9380d6ed0a69",
+    "destination_address_id": "9bfa1d1b-f07d-44ba-9aa2-18cf8b72a6af",
+    "created_at": "2024-02-16T04:05:16.517Z",
+    "updated_at": "2024-02-16T04:05:16.517Z",
     "home_address": {
-      "id": "943d2863-d62d-4426-9b62-c8c697fc97e3",
+      "id": "8bc8c7dd-4977-4655-8892-14143dbc4895",
       "address": "1600 Amphitheatre Pkwy",
-      "created_at": "2024-02-16T04:33:32.790Z",
-      "updated_at": "2024-02-16T04:33:32.790Z"
+      "created_at": "2024-02-16T04:05:16.451Z",
+      "updated_at": "2024-02-16T04:05:16.451Z"
     },
     "start_address": {
-      "id": "9b6e17ca-9543-452e-98cd-9423c2c36923",
+      "id": "c23bfaad-5633-4d4b-a36b-9380d6ed0a69",
       "address": "1588 E Thomspon Blvd",
-      "created_at": "2024-02-16T04:33:32.781Z",
-      "updated_at": "2024-02-16T04:33:32.781Z"
+      "created_at": "2024-02-16T04:05:16.435Z",
+      "updated_at": "2024-02-16T04:05:16.435Z"
     },
     "commute_distance": 319.3271776007556,
     "commute_duration": 4.984444444444445,
     "destination_address": {
-      "id": "943d2863-d62d-4426-9b62-c8c697fc97e3",
-      "address": "1600 Amphitheatre Pkwy",
-      "created_at": "2024-02-16T04:33:32.790Z",
-      "updated_at": "2024-02-16T04:33:32.790Z"
+      "id": "9bfa1d1b-f07d-44ba-9aa2-18cf8b72a6af",
+      "address": "2112 E Thompson Blvd",
+      "created_at": "2024-02-16T04:05:16.455Z",
+      "updated_at": "2024-02-16T04:05:16.455Z"
     },
-    "ride_distance": 319.08670635167215,
-    "ride_duration": 4.92,
-    "ride_earnings": 483.13005952750825,
-    "score": 48.77911752016575
+    "ride_distance": 0.46789367069730453,
+    "ride_duration": 0.015277777777777777,
+    "ride_earnings": 12,
+    "score": 2.4001333407411525
   },
   {
-    "id": "4d2a3d65-2477-4c42-904d-fea7c329250d",
-    "start_address_id": "a1f1b68a-9010-4820-a3b5-c8e22c331ad0",
-    "destination_address_id": "943d2863-d62d-4426-9b62-c8c697fc97e3",
-    "created_at": "2024-02-16T04:33:32.853Z",
-    "updated_at": "2024-02-16T04:33:32.853Z",
+    "id": "0b3e3771-1556-4fa4-981a-693ba8aed182",
+    "start_address_id": "9bfa1d1b-f07d-44ba-9aa2-18cf8b72a6af",
+    "destination_address_id": "c23bfaad-5633-4d4b-a36b-9380d6ed0a69",
+    "created_at": "2024-02-16T04:05:16.502Z",
+    "updated_at": "2024-02-16T04:05:16.502Z",
     "home_address": {
-      "id": "943d2863-d62d-4426-9b62-c8c697fc97e3",
+      "id": "8bc8c7dd-4977-4655-8892-14143dbc4895",
       "address": "1600 Amphitheatre Pkwy",
-      "created_at": "2024-02-16T04:33:32.790Z",
-      "updated_at": "2024-02-16T04:33:32.790Z"
+      "created_at": "2024-02-16T04:05:16.451Z",
+      "updated_at": "2024-02-16T04:05:16.451Z"
     },
     "start_address": {
-      "id": "a1f1b68a-9010-4820-a3b5-c8e22c331ad0",
+      "id": "9bfa1d1b-f07d-44ba-9aa2-18cf8b72a6af",
       "address": "2112 E Thompson Blvd",
-      "created_at": "2024-02-16T04:33:32.794Z",
-      "updated_at": "2024-02-16T04:33:32.794Z"
+      "created_at": "2024-02-16T04:05:16.455Z",
+      "updated_at": "2024-02-16T04:05:16.455Z"
     },
     "commute_distance": 319.79444989871627,
     "commute_duration": 4.999722222222222,
     "destination_address": {
-      "id": "943d2863-d62d-4426-9b62-c8c697fc97e3",
-      "address": "1600 Amphitheatre Pkwy",
-      "created_at": "2024-02-16T04:33:32.790Z",
-      "updated_at": "2024-02-16T04:33:32.790Z"
+      "id": "c23bfaad-5633-4d4b-a36b-9380d6ed0a69",
+      "address": "1588 E Thomspon Blvd",
+      "created_at": "2024-02-16T04:05:16.435Z",
+      "updated_at": "2024-02-16T04:05:16.435Z"
     },
-    "ride_distance": 319.55397864963277,
-    "ride_duration": 4.934722222222222,
-    "ride_earnings": 483.83096797444915,
-    "score": 48.70236787574144
+    "ride_distance": 0.46789367069730453,
+    "ride_duration": 0.014722222222222222,
+    "ride_earnings": 12,
+    "score": 2.3930866385996015
   }
 ]
 ```

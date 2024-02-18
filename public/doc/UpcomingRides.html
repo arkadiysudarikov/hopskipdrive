@@ -218,7 +218,7 @@
   <span class="ruby-comment"># this exercise, it is calculated as:</span>
   <span class="ruby-comment"># $12 + $1.50 per mile beyond 5 miles + (ride duration) * $0.70 per minute beyond 15 minutes</span>
 
-  <span class="ruby-value">12.0</span> <span class="ruby-operator">+</span> ([<span class="ruby-identifier">ride_distance</span> <span class="ruby-operator">-</span> <span class="ruby-value">5.0</span>, <span class="ruby-value">0.0</span>].<span class="ruby-identifier">max</span> <span class="ruby-operator">*</span> <span class="ruby-value">1.5</span>) <span class="ruby-operator">+</span> ([<span class="ruby-identifier">ride_duration</span> <span class="ruby-operator">-</span> <span class="ruby-value">15.0</span>, <span class="ruby-value">0.0</span>].<span class="ruby-identifier">max</span> <span class="ruby-operator">*</span> <span class="ruby-value">0.7</span>)
+  <span class="ruby-value">12.0</span> <span class="ruby-operator">+</span> ([<span class="ruby-identifier">ride_distance</span> <span class="ruby-operator">-</span> <span class="ruby-value">5.0</span>, <span class="ruby-value">0.0</span>].<span class="ruby-identifier">max</span> <span class="ruby-operator">*</span> <span class="ruby-value">1.5</span>) <span class="ruby-operator">+</span> ([(<span class="ruby-identifier">ride_duration</span> <span class="ruby-operator">*</span> <span class="ruby-value">60</span>) <span class="ruby-operator">-</span> <span class="ruby-value">15.0</span>, <span class="ruby-value">0.0</span>].<span class="ruby-identifier">max</span> <span class="ruby-operator">*</span> <span class="ruby-value">0.7</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>

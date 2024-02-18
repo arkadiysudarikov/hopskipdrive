@@ -16,7 +16,7 @@ RSpec.describe GoogleDirectionsApiClient do
   end
 
   describe '#get_directions' do
-    it 'returns the distance and duration in miles and minutes' do
+    it 'returns the distance and duration in miles and hours' do
       stub_request(:get, "https://maps.googleapis.com/maps/api/directions/json?origin=1588%20E%20Thompson%20Blvd&destination=2112%20E%20Thompson%20Blvd&key=GOOGLE_DIRECTIONS_API_KEY")
         .with(
           headers: headers
@@ -43,7 +43,7 @@ RSpec.describe GoogleDirectionsApiClient do
         "status" : "OK"
         }', headers: {})
 
-      # Expect the get_directions method to return the distance and duration in miles and minutes
+      # Expect the get_directions method to return the distance and duration in miles and hours
       expect(google_directions_api_client.get_directions("1588 E Thompson Blvd",
                                                          "2112 E Thompson Blvd")).to eq([5.0, 10.0])
     end

@@ -137,7 +137,7 @@ RSpec.describe UpcomingRides do
   describe '#ride_earnings' do
     it 'calculates the ride earnings based on ride distance and duration' do
       ride_distance = 10.0
-      ride_duration = 20.0
+      ride_duration = 20.0 / 60.0
 
       # Expect the ride_earnings method to calculate the earnings correctly
       expect(ride_earnings(ride_distance,
@@ -146,7 +146,7 @@ RSpec.describe UpcomingRides do
 
     it 'calculates the ride earnings based on ride distance and duration' do
       ride_distance = 3.0
-      ride_duration = 10.0
+      ride_duration = 10.0 / 60.0
 
       # Expect the ride_earnings method to calculate the earnings correctly
       expect(ride_earnings(ride_distance, ride_duration)).to eq(12 + (0.0 * 1.5) + (0.0 * 0.7))
@@ -154,7 +154,7 @@ RSpec.describe UpcomingRides do
 
     it 'calculates the ride earnings based on ride distance and duration' do
       ride_distance = 5.0
-      ride_duration = 15.0
+      ride_duration = 15.0 / 60.0
 
       # Expect the ride_earnings method to calculate the earnings correctly
       expect(ride_earnings(ride_distance, ride_duration)).to eq(12 + (0.0 * 1.5) + (0.0 * 0.7))
@@ -162,7 +162,7 @@ RSpec.describe UpcomingRides do
 
     it 'calculates the ride earnings based on ride distance and duration' do
       ride_distance = 7.0
-      ride_duration = 25.0
+      ride_duration = 25.0 / 60.0
 
       # Expect the ride_earnings method to calculate the earnings correctly
       expect(ride_earnings(ride_distance,
@@ -171,7 +171,7 @@ RSpec.describe UpcomingRides do
 
     it 'calculates the ride earnings based on ride distance and duration' do
       ride_distance = 1.0
-      ride_duration = 5.0
+      ride_duration = 5.0 / 60.0
 
       # Expect the ride_earnings method to calculate the earnings correctly
       expect(ride_earnings(ride_distance, ride_duration)).to eq(12 + (0.0 * 1.5) + (0.0 * 0.7))
@@ -179,7 +179,7 @@ RSpec.describe UpcomingRides do
 
     it 'calculates the ride earnings based on ride distance and duration' do
       ride_distance = 10.0
-      ride_duration = 15.0
+      ride_duration = 15.0 / 60.0
 
       # Expect the ride_earnings method to calculate the earnings correctly
       expect(ride_earnings(ride_distance,
@@ -188,7 +188,7 @@ RSpec.describe UpcomingRides do
 
     it 'calculates the ride earnings based on ride distance and duration' do
       ride_distance = 10.0
-      ride_duration = 10.0
+      ride_duration = 10.0 / 60.0
 
       # Expect the ride_earnings method to calculate the earnings correctly
       expect(ride_earnings(ride_distance,
@@ -197,7 +197,7 @@ RSpec.describe UpcomingRides do
 
     it 'calculates the ride earnings based on ride distance and duration' do
       ride_distance = 5.0
-      ride_duration = 5.0
+      ride_duration = 5.0 / 60.0
 
       # Expect the ride_earnings method to calculate the earnings correctly
       expect(ride_earnings(ride_distance, ride_duration)).to eq(12 + (0.0 * 1.5) + (0.0 * 0.7))
@@ -205,7 +205,7 @@ RSpec.describe UpcomingRides do
 
     it 'calculates the ride earnings based on ride distance and duration' do
       ride_distance = 20.0
-      ride_duration = 20.0
+      ride_duration = 20.0 / 60.0
 
       # Expect the ride_earnings method to calculate the earnings correctly
       expect(ride_earnings(ride_distance,
@@ -214,7 +214,7 @@ RSpec.describe UpcomingRides do
 
     it 'calculates the ride earnings based on ride distance and duration' do
       ride_distance = 20.0
-      ride_duration = 10.0
+      ride_duration = 10.0 / 60.0
 
       # Expect the ride_earnings method to calculate the earnings correctly
       expect(ride_earnings(ride_distance,
@@ -337,8 +337,8 @@ RSpec.describe UpcomingRides do
                                                                                  destination_address: destination_address,
                                                                                  ride_distance: 5.0,
                                                                                  ride_duration: 10.0,
-                                                                                 ride_earnings: 12.0,
-                                                                                 score: 0.6
+                                                                                 ride_earnings: 421.5,
+                                                                                 score: 21.075
                                                                                })
     end
   end
