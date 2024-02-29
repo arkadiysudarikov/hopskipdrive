@@ -18,7 +18,7 @@ paths:
       schema:
         type: string
     get:
-      summary: list upcoming rides
+      summary: List Upcoming Rides
       responses:
         '200':
           description: Successful
@@ -28,8 +28,6 @@ paths:
           description: Bad Request
         '500':
           description: Internal Server Error
-        '503':
-          description: Service Unavailable
 servers:
 - url: https://hopskipdrive-fa2a8e6ce701.herokuapp.com
   variables:
