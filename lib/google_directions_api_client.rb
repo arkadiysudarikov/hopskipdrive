@@ -11,9 +11,9 @@ class GoogleDirectionsApiClient
   BASE_URL = "https://maps.googleapis.com/maps/api/directions/json"
 
   # METERS_IN_A_MILE is the number of meters in a mile
-  METERS_IN_A_MILE = 1609.34
+  METERS_IN_A_MILE = 1_609.34
   # SECONDS_IN_AN_HOUR is the number of seconds in an hour
-  SECONDS_IN_AN_HOUR = 3600.0
+  SECONDS_IN_AN_HOUR = 3_600.0
 
   # GOOGLE_DIRECTIONS_API_ERROR is the error message when the Google Directions API returns an error
   GOOGLE_DIRECTIONS_API_ERROR = "Google Directions API Error"
