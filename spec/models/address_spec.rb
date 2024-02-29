@@ -55,6 +55,8 @@ RSpec.describe Address do
     it "has many home_addresses" do
       association = described_class.reflect_on_association(:home_addresses)
       expect(association.macro).to eq(:has_many)
+      expect(association.options[:class_name]).to eq("Driver")
+      expect(association.options[:foreign_key]).to eq("home_address_id")
     end
   end
 end
