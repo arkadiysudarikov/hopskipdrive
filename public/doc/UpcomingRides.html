@@ -148,7 +148,7 @@
           <p>The <a href="UpcomingRides.html#method-i-get_data"><code>get_data</code></a> method takes in the driver’s home address, the start address, and the destination address, and returns a hash with the commute distance and duration, the ride distance and duration, the ride earnings, and the score. It uses the <a href="UpcomingRides.html#method-i-get_directions"><code>get_directions</code></a> method to get the commute distance and duration and the ride distance and duration, and the <a href="UpcomingRides.html#method-i-ride_earnings"><code>ride_earnings</code></a> method to get the ride earnings. It uses the score method to get the score. It returns the hash with the data. The <a href="UpcomingRides.html#method-i-get_data"><code>get_data</code></a> method is used by the <a href="UpcomingRides.html#method-i-add_ride_attributes"><code>add_ride_attributes</code></a> method to add the ride’s attributes and additional attributes to the ride. The <a href="UpcomingRides.html#method-i-get_data"><code>get_data</code></a> method is also used by the <a href="UpcomingRides.html#method-i-upcoming_rides"><code>upcoming_rides</code></a> method to get the upcoming rides from the database. The <a href="UpcomingRides.html#method-i-get_data"><code>get_data</code></a> method is also used by the <a href="UpcomingRides.html#method-i-add_ride_attributes"><code>add_ride_attributes</code></a> method to add the ride’s attributes and additional attributes to the ride.</p>
 
           <div class="method-source-code" id="get_data-source">
-            <pre><span class="ruby-comment"># File lib/upcoming_rides.rb, line 91</span>
+            <pre><span class="ruby-comment"># File lib/upcoming_rides.rb, line 96</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_data</span>(<span class="ruby-identifier">home_address</span>, <span class="ruby-identifier">start_address</span>, <span class="ruby-identifier">destination_address</span>)
   <span class="ruby-identifier">commute_distance</span>, <span class="ruby-identifier">commute_duration</span> = <span class="ruby-identifier">get_directions</span>(<span class="ruby-identifier">home_address</span>, <span class="ruby-identifier">start_address</span>)
   <span class="ruby-identifier">ride_distance</span>, <span class="ruby-identifier">ride_duration</span> = <span class="ruby-identifier">get_directions</span>(<span class="ruby-identifier">start_address</span>, <span class="ruby-identifier">destination_address</span>)
@@ -208,10 +208,10 @@
         </div>
 
         <div class="method-description">
-          
+          <p>The <a href="UpcomingRides.html#method-i-ride_earnings"><code>ride_earnings</code></a> method takes in the ride distance and duration and returns the ride earnings. It is used by the <a href="UpcomingRides.html#method-i-get_data"><code>get_data</code></a> method to get the ride earnings. It is also used by the <a href="UpcomingRides.html#method-i-add_ride_attributes"><code>add_ride_attributes</code></a> method to add the ride’s attributes and additional attributes to the ride. It is also used by the <a href="UpcomingRides.html#method-i-upcoming_rides"><code>upcoming_rides</code></a> method to get the upcoming rides from the database.</p>
 
           <div class="method-source-code" id="ride_earnings-source">
-            <pre><span class="ruby-comment"># File lib/upcoming_rides.rb, line 62</span>
+            <pre><span class="ruby-comment"># File lib/upcoming_rides.rb, line 67</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">ride_earnings</span>(<span class="ruby-identifier">ride_distance</span>, <span class="ruby-identifier">ride_duration</span>)
   <span class="ruby-comment"># The ride earnings is how much the driver earns by driving the ride. It takes into account</span>
   <span class="ruby-comment"># both the amount of time the ride is expected to take and the distance. For the purposes of</span>
@@ -239,7 +239,7 @@
           <p>The score is a metric that takes into account the ride earnings, the commute duration, and the ride duration. It is calculated as the ride earnings divided by the sum of the commute duration and the ride duration.</p>
 
           <div class="method-source-code" id="score-source">
-            <pre><span class="ruby-comment"># File lib/upcoming_rides.rb, line 74</span>
+            <pre><span class="ruby-comment"># File lib/upcoming_rides.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">score</span>(<span class="ruby-identifier">ride_earnings</span>, <span class="ruby-identifier">commute_duration</span>, <span class="ruby-identifier">ride_duration</span>)
   <span class="ruby-identifier">ride_earnings</span> <span class="ruby-operator">/</span> (<span class="ruby-identifier">commute_duration</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">ride_duration</span>)
 <span class="ruby-keyword">end</span></pre>
