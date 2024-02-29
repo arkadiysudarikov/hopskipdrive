@@ -59,6 +59,11 @@ module UpcomingRides
     ride.attributes.merge(data)
   end
 
+  # The ride_earnings method takes in the ride distance and duration and returns the ride earnings.
+  # It is used by the get_data method to get the ride earnings.
+  # It is also used by the add_ride_attributes method to add the ride's attributes and additional
+  # attributes to the ride.
+  # It is also used by the upcoming_rides method to get the upcoming rides from the database.
   def ride_earnings(ride_distance, ride_duration)
     # The ride earnings is how much the driver earns by driving the ride. It takes into account
     # both the amount of time the ride is expected to take and the distance. For the purposes of
