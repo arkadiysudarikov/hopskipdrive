@@ -62,7 +62,7 @@ RSpec.describe 'api/v1/upcoming_rides' do
     parameter name: "driver_id", in: :path, type: :string, description: "Driver ID"
     parameter name: "page", in: :query, type: :string, description: "Page number"
 
-    get('list upcoming rides') do
+    get('List Upcoming Rides') do
       response(200, "Successful") do
         let(:driver_id) { 'e76885d9-dc50-4616-830e-cd24beefd7d9' }
         let(:page) { 1 }
