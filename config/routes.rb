@@ -15,11 +15,7 @@ Rails.application.routes.draw do
       scope ':driver_id' do
         resources :upcoming_rides, only: [:index], defaults: { format: :json }
       end
-    end
-  end
 
-  namespace :api do
-    namespace :v1 do
       resources :drivers, only: [] do
         resources :upcoming_rides, only: [:index], defaults: { format: :json }
       end
