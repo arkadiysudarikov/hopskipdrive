@@ -11,9 +11,12 @@ module Api
 
       def index
         @driver = Driver.find(driver_params)
-        @rides = Ride.eager_load(:start_address, :destination_address).all
+        all_rides = Ride.eager_load(:start_address, :destination_address).all
 
-        pagy, upcoming_rides = pagy_array(upcoming_rides(@driver, @rides))
+        pagy, paginated_rides = pagy_array(all_rides)
+
+        upcoming_rides = paginated_rides.map { |ride| add_ride_attributes(@driver, ride) }
+        upcoming_rides.sort_by! { |ride| -ride[:score] }
 
         pagy_headers_merge(pagy)
 
