@@ -22,8 +22,8 @@ module Api
         render json: { error: e.message }, status: :service_unavailable
       rescue Pagy::OverflowError
         render json: { error: "Page out of range" }, status: :bad_request
-      rescue Pagy::VariableError
-        render json: { error: "{}" }, status: :internal_server_error
+      rescue Pagy::VariableError => e
+        render json: { error: "Invalid pagination parameter: #{e.message}" }, status: :bad_request
       end
 
       private
