@@ -31,3 +31,10 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Ignore local development credentials created for personal API keys.
+/config/credentials/development.key
+/config/credentials/development.yml.enc
+
+# Ignore generated local artifacts.
+/output/
