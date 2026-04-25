@@ -96,12 +96,12 @@ module UpcomingRides
   def get_data(home_address, start_address, destination_address)
     commute_distance, commute_duration = get_directions(home_address, start_address)
     ride_distance, ride_duration = get_directions(start_address, destination_address)
-    ride_earnings = ride_earnings(ride_distance, ride_duration)
+    earnings = ride_earnings(ride_distance, ride_duration)
     {
       home_address: home_address, start_address: start_address, commute_distance: commute_distance,
       commute_duration: commute_duration, destination_address: destination_address,
-      ride_distance: ride_distance, ride_duration: ride_duration, ride_earnings: ride_earnings,
-      score: score(ride_earnings, commute_duration, ride_duration)
+      ride_distance: ride_distance, ride_duration: ride_duration, ride_earnings: earnings,
+      score: score(earnings, commute_duration, ride_duration)
     }
   end
 end
