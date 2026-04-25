@@ -36,5 +36,5 @@
 /config/credentials/development.key
 /config/credentials/development.yml.enc
 
-# Ignore generated local artifacts.
-/output/
+# Ignore macOS Finder metadata.
+.DS_Store
