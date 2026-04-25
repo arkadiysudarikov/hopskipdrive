@@ -105,10 +105,12 @@ RSpec.describe 'api/v1/upcoming_rides' do
           }
         end
 
-        run_test!
+        run_test! do |response|
+          expect(JSON.parse(response.body)).to eq("error" => "Page out of range")
+        end
       end
 
-      response(500, "Internal Server Error") do
+      response(400, "Bad Request (Invalid Page Param)") do
         let(:driver_id) { 'e76885d9-dc50-4616-830e-cd24beefd7d9' }
         let(:page) { 0 }
 
@@ -120,8 +122,95 @@ RSpec.describe 'api/v1/upcoming_rides' do
           }
         end
 
-        run_test!
+        run_test! do |response|
+          expect(JSON.parse(response.body)["error"]).to include("Invalid pagination parameter")
+        end
       end
     end
+  end
+
+  describe "score ordering before pagination" do
+    before do
+      Rails.cache.clear
+      Ride.delete_all
+      Driver.delete_all
+      Address.delete_all
+
+      home_address = Address.create!(address: "Regression Home")
+      @driver = Driver.create!(id: "e76885d9-dc50-4616-830e-cd24beefd7d9", home_address: home_address)
+      @rides = [
+        create_ride("Low Score 1", 10),
+        create_ride("Low Score 2", 20),
+        create_ride("Low Score 3", 30),
+        create_ride("Low Score 4", 40),
+        create_ride("Low Score 5", 50),
+        create_ride("High Score 1", 100),
+        create_ride("High Score 2", 90)
+      ]
+      @scores_by_ride_id = @rides.to_h { |ride, score| [ride.id, score] }
+      @scored_ride_ids = []
+
+      allow_any_instance_of(Api::V1::UpcomingRidesController).to receive(:add_ride_attributes) do |_controller, driver, ride|
+        expect(driver).to eq(@driver)
+
+        @scored_ride_ids << ride.id
+        ride.attributes.merge(score: @scores_by_ride_id.fetch(ride.id))
+      end
+    end
+
+    it "returns the highest scoring rides on the first page even when they were created after lower scoring rides" do
+      get "/api/v1/drivers/#{@driver.id}/upcoming_rides", params: { page: 1 }
+
+      expect(response).to have_http_status(:ok)
+      expect(response_ids).to eq(expected_ids_for_page(1))
+    end
+
+    it "returns the remaining globally sorted rides on the second page" do
+      get "/api/v1/drivers/#{@driver.id}/upcoming_rides", params: { page: 2 }
+
+      expect(response).to have_http_status(:ok)
+      expect(response_ids).to eq(expected_ids_for_page(2))
+    end
+
+    it "scores every ride before paginating the response" do
+      get "/api/v1/drivers/#{@driver.id}/upcoming_rides", params: { page: 1 }
+
+      expect(response).to have_http_status(:ok)
+      expect(@scored_ride_ids).to match_array(@rides.map(&:first).map(&:id))
+    end
+
+    it "keeps all page 1 scores greater than or equal to all page 2 scores" do
+      get "/api/v1/drivers/#{@driver.id}/upcoming_rides", params: { page: 1 }
+      page_1_scores = response_scores
+
+      get "/api/v1/drivers/#{@driver.id}/upcoming_rides", params: { page: 2 }
+      page_2_scores = response_scores
+
+      expect(page_1_scores.min).to be >= page_2_scores.max
+    end
+  end
+
+  def create_ride(label, score)
+    start_address = Address.create!(address: "#{label} Start")
+    destination_address = Address.create!(address: "#{label} Destination")
+
+    [Ride.create!(start_address: start_address, destination_address: destination_address), score]
+  end
+
+  def expected_ids_for_page(page)
+    @rides
+      .sort_by { |_ride, score| -score }
+      .map { |ride, _score| ride.id }
+      .each_slice(Pagy::DEFAULT[:items])
+      .to_a
+      .fetch(page - 1)
+  end
+
+  def response_ids
+    JSON.parse(response.body).map { |ride| ride.fetch("id") }
+  end
+
+  def response_scores
+    JSON.parse(response.body).map { |ride| ride.fetch("score") }
   end
 end
