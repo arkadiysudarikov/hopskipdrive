@@ -6,14 +6,11 @@
 # Read more: https://github.com/cyu/rack-cors
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
-  allow do
-    origins "https://hopskipdrive-fa2a8e6ce701.herokuapp.com"
-
-    resource "*", headers: :any, methods: [:get]
-  end
+  allowed_origins = ENV.fetch("CORS_ALLOWED_ORIGINS", "").split(",").map(&:strip).reject(&:empty?)
+  allowed_origins << "http://localhost:3000" if Rails.env.development? || Rails.env.test?
 
   allow do
-    origins "http://localhost:3000"
+    origins(*allowed_origins)
 
     resource "*", headers: :any, methods: [:get]
   end
