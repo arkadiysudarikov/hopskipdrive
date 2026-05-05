@@ -24,20 +24,7 @@ RSpec.configure do |config|
       paths: {},
       servers: [
         {
-          url: 'https://hopskipdrive-fa2a8e6ce701.herokuapp.com',
-          variables: {
-            defaultHost: {
-              default: 'https://hopskipdrive-fa2a8e6ce701.herokuapp.com'
-            }
-          }
-        },
-        {
-          url: 'http://localhost:3000',
-          variables: {
-            defaultHost: {
-              default: 'http://localhost:3000'
-            }
-          }
+          url: '/'
         }
       ]
     }
