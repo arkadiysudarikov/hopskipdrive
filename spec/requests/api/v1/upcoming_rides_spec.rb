@@ -12,13 +12,18 @@ RSpec.describe 'api/v1/upcoming_rides' do
   end
 
   before do
+    Ride.delete_all
+    Driver.delete_all
+    Address.delete_all
+
     ["1588 E Thomspon Blvd",
      "2112 E Thompson Blvd"].each do |address|
       Address.find_or_create_by!(address: address)
     end
 
-    Driver.find_or_create_by!(id: "e76885d9-dc50-4616-830e-cd24beefd7d9",
-                              home_address: Address.first)
+    driver = Driver.find_or_initialize_by(id: "e76885d9-dc50-4616-830e-cd24beefd7d9")
+    driver.home_address ||= Address.first
+    driver.save!
 
     Ride.find_or_create_by(start_address: Address.first, destination_address: Address.second)
 
