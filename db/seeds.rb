@@ -15,8 +15,9 @@
   Address.find_or_create_by!(address: address)
 end
 
-Driver.find_or_create_by!(id: "e76885d9-dc50-4616-830e-cd24beefd7d9",
-                          home_address: Address.all.sample)
+driver = Driver.find_or_initialize_by(id: "e76885d9-dc50-4616-830e-cd24beefd7d9")
+driver.home_address ||= Address.all.sample
+driver.save!
 
 Ride.find_or_create_by(start_address: Address.first, destination_address: Address.second)
 Ride.find_or_create_by(start_address: Address.first, destination_address: Address.third)
