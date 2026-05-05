@@ -79,6 +79,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV["DATABASE_URL"] if ENV["DATABASE_URL"].present? %>
   database: hopskipdrive_production
   username: hopskipdrive
   password: <%= ENV["HOPSKIPDRIVE_DATABASE_PASSWORD"] %>
