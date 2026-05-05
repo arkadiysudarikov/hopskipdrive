@@ -12,6 +12,10 @@ RSpec.describe 'api/v1/upcoming_rides' do
   end
 
   before do
+    Ride.delete_all
+    Driver.delete_all
+    Address.delete_all
+
     ["1588 E Thomspon Blvd",
      "2112 E Thompson Blvd"].each do |address|
       Address.find_or_create_by!(address: address)
