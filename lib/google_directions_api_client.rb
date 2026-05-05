@@ -25,6 +25,8 @@ class GoogleDirectionsApiClient
 
   # get_directions fetches directions from the Google Directions API
   def get_directions(origin, destination)
+    return fake_directions(origin, destination) if fake_mode?
+
     url = build_url(origin, destination)
 
     response = send_request(url)
@@ -36,13 +38,25 @@ class GoogleDirectionsApiClient
 
   private
 
+  def fake_mode?
+    ENV["GOOGLE_DIRECTIONS_MODE"] == "fake" || (Rails.env.development? && @api_key.blank?)
+  end
+
+  def fake_directions(origin, destination)
+    checksum = Zlib.crc32("#{origin}->#{destination}")
+    miles = ((checksum % 2_000) / 100.0) + 1.0
+    minutes = ((checksum / 2_000) % 180) + 10
+
+    [miles.round(2), (minutes / 60.0).round(3)]
+  end
+
   def build_url(origin, destination)
     "#{BASE_URL}?origin=#{URI.encode_www_form_component(origin)}&destination=#{URI.encode_www_form_component(destination)}&key=#{@api_key}"
   end
 
   def send_request(url)
     JSON.parse(URI.parse(url).open.read)
-  rescue URI::Error
+  rescue URI::Error, OpenURI::HTTPError, SocketError, IOError, SystemCallError, Timeout::Error, OpenSSL::SSL::SSLError, JSON::ParserError
     raise DirectionsAPIError, "Unable to fetch directions. Please try again."
   end
 

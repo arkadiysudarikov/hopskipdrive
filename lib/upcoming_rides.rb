@@ -42,8 +42,9 @@ module UpcomingRides
 
     Rails.cache.fetch(cache_key, expires_in: CACHE_EXPIRATION) do
       # Consider dependency injection
+      google_api_key = ENV["GOOGLE_API_KEY"].presence || Rails.application.credentials.google_api_key
       google_directions_api_client = GoogleDirectionsApiClient.new(
-        Rails.application.credentials.google_api_key
+        google_api_key
       )
 
       google_directions_api_client.get_directions(origin.address, destination.address)
