@@ -1,0 +1,77 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  id-token: write
+
+env:
+  AWS_REGION: us-west-2
+  EKS_CLUSTER_NAME: hopskipdrive-lab
+  ECR_REPOSITORY: hopskipdrive
+  K8S_NAMESPACE: hopskipdrive
+  K8S_DEPLOYMENT: hopskipdrive-web
+  K8S_CONTAINER_NAME: web
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Validate deploy configuration
+        env:
+          AWS_DEPLOY_ROLE_ARN: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+        run: |
+          : "${AWS_DEPLOY_ROLE_ARN:?Set repository variable AWS_DEPLOY_ROLE_ARN before running deploys.}"
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ env.AWS_REGION }}
+          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+
+      - name: Log in to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and push image
+        id: build-image
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          image_uri="$REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
+          docker build -t "$image_uri" .
+          docker push "$image_uri"
+
+          echo "image_uri=$image_uri" >> "$GITHUB_OUTPUT"
+
+      - name: Install kubectl
+        uses: azure/setup-kubectl@v4
+        with:
+          version: latest
+
+      - name: Update kubeconfig
+        run: aws eks update-kubeconfig --name "$EKS_CLUSTER_NAME" --region "$AWS_REGION"
+
+      - name: Deploy to EKS
+        env:
+          IMAGE_URI: ${{ steps.build-image.outputs.image_uri }}
+        run: |
+          kubectl apply -f k8s/namespace.yaml
+          kubectl apply -f k8s/app.yaml
+          kubectl --namespace "$K8S_NAMESPACE" set image deployment/"$K8S_DEPLOYMENT" "$K8S_CONTAINER_NAME"="$IMAGE_URI"
+          kubectl --namespace "$K8S_NAMESPACE" rollout status deployment/"$K8S_DEPLOYMENT" --timeout=5m
