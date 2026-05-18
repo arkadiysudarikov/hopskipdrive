@@ -50,7 +50,7 @@ Merge to `main`:
 Repository variables:
 
 - `AWS_REGION`, for example `us-west-2`.
-- `ECR_REPOSITORY`, for example `hopskipdrive-api`.
+- `ECR_REPOSITORY`, default `hopskipdrive`.
 - `EKS_CLUSTER_NAME`, default `hopskipdrive-lab`.
 - `AWS_DEPLOY_ROLE_ARN`: IAM role ARN trusted by GitHub OIDC.
 
@@ -82,7 +82,7 @@ Rollback to a known image tag:
 
 ```bash
 kubectl -n hopskipdrive set image deployment/hopskipdrive-api \
-  api=<account>.dkr.ecr.<region>.amazonaws.com/hopskipdrive-api:<git-sha>
+  api=<account>.dkr.ecr.<region>.amazonaws.com/hopskipdrive:<git-sha>
 kubectl -n hopskipdrive rollout status deployment/hopskipdrive-api --timeout=120s
 ```
 

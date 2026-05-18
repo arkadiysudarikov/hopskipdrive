@@ -11,7 +11,7 @@ permissions:
 
 env:
   AWS_REGION: ${{ vars.AWS_REGION || 'us-west-2' }}
-  ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY || 'hopskipdrive-api' }}
+  ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY || 'hopskipdrive' }}
   EKS_CLUSTER_NAME: ${{ vars.EKS_CLUSTER_NAME || 'hopskipdrive-lab' }}
   KUBE_NAMESPACE: hopskipdrive
   RUBY_VERSION: 3.2.3
