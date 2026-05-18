@@ -6,7 +6,7 @@ metadata:
   labels:
     app.kubernetes.io/name: hopskipdrive-api
 spec:
-  replicas: 2
+  replicas: 1
   revisionHistoryLimit: 5
   selector:
     matchLabels:
@@ -42,13 +42,13 @@ spec:
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
-                  name: hopskipdrive-api-secrets
-                  key: database-url
+                  name: hopskipdrive-secrets
+                  key: DATABASE_URL
             - name: SECRET_KEY_BASE
               valueFrom:
                 secretKeyRef:
-                  name: hopskipdrive-api-secrets
-                  key: secret-key-base
+                  name: hopskipdrive-secrets
+                  key: SECRET_KEY_BASE
           readinessProbe:
             httpGet:
               path: /ready

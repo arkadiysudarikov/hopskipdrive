@@ -57,9 +57,9 @@ Repository variables:
 Kubernetes secret:
 
 ```bash
-kubectl -n hopskipdrive create secret generic hopskipdrive-api-secrets \
-  --from-literal=database-url='postgres://USER:PASSWORD@HOST:5432/DB' \
-  --from-literal=secret-key-base='replace-with-rails-secret'
+kubectl -n hopskipdrive create secret generic hopskipdrive-secrets \
+  --from-literal=DATABASE_URL='postgres://USER:PASSWORD@HOST:5432/DB' \
+  --from-literal=SECRET_KEY_BASE='replace-with-rails-secret'
 ```
 
 ## Rollback
