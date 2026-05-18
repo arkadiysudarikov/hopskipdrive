@@ -114,7 +114,8 @@ jobs:
           aws ecr put-lifecycle-policy \
             --repository-name "$ECR_REPOSITORY" \
             --lifecycle-policy-text file://.github/ecr-lifecycle-policy.json \
-            --region "$AWS_REGION"
+            --region "$AWS_REGION" || \
+            echo "Skipping ECR lifecycle policy; deploy role lacks ecr:PutLifecyclePolicy."
 
       - name: Build and push image
         id: build
