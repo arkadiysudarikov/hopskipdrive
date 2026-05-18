@@ -111,6 +111,10 @@ jobs:
               --repository-name "$ECR_REPOSITORY" \
               --image-scanning-configuration scanOnPush=true \
               --region "$AWS_REGION"
+          aws ecr put-lifecycle-policy \
+            --repository-name "$ECR_REPOSITORY" \
+            --lifecycle-policy-text file://.github/ecr-lifecycle-policy.json \
+            --region "$AWS_REGION"
 
       - name: Build and push image
         id: build
@@ -136,6 +140,8 @@ jobs:
           kubectl apply -f k8s/service.yaml
           kubectl apply -f k8s/deployment.yaml
           kubectl apply -f k8s/ingress.yaml
+          kubectl apply -f k8s/console-readonly-rbac.yaml
+          kubectl -n "$KUBE_NAMESPACE" delete deployment/hopskipdrive-web service/hopskipdrive-web --ignore-not-found
           kubectl -n "$KUBE_NAMESPACE" set image deployment/hopskipdrive-api api="$IMAGE_URI"
           kubectl -n "$KUBE_NAMESPACE" rollout status deployment/hopskipdrive-api --timeout=300s || {
             kubectl -n "$KUBE_NAMESPACE" get pods -o wide

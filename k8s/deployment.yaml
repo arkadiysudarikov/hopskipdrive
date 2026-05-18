@@ -25,6 +25,8 @@ spec:
         prometheus.io/path: /metrics
         prometheus.io/port: "3000"
     spec:
+      nodeSelector:
+        kubernetes.io/arch: arm64
       containers:
         - name: api
           image: 000000000000.dkr.ecr.us-west-2.amazonaws.com/hopskipdrive:main

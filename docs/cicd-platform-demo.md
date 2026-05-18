@@ -20,9 +20,10 @@ flowchart LR
 
 - `Dockerfile` builds a production Rails image with Ruby 3.2.3, Bundler 2.5.6, PostgreSQL runtime libraries, Bootsnap precompilation, and a non-root runtime user.
 - `.github/workflows/cicd.yml` runs tests and a Docker build for PRs, then pushes to AWS ECR and deploys to Kubernetes only after a merge to `main`.
-- `k8s/` contains minimal Kubernetes manifests for a namespace, service, and rolling deployment.
+- `k8s/` contains minimal Kubernetes manifests for a namespace, service, rolling deployment, public ALB ingress, and read-only console visibility.
 - `/up` remains the Rails liveness endpoint. `/ready` now checks database connectivity for readiness.
 - `/metrics` exposes a small Prometheus-compatible build info metric, and the Deployment includes scrape annotations.
+- ECR lifecycle policy keeps image history bounded for the demo instead of retaining every CI image indefinitely.
 
 ## Pipeline Behavior
 
@@ -41,9 +42,10 @@ Merge to `main`:
 2. Configure AWS credentials through GitHub OIDC.
 3. Log in to ECR.
 4. Build and push two tags: the immutable commit SHA and `main`.
-5. Apply the Kubernetes manifests.
-6. Update the Deployment image to the commit SHA.
-7. Wait for Kubernetes rollout success.
+5. Apply the Kubernetes manifests, including the public Ingress and read-only console RBAC.
+6. Remove the old scaffolded `hopskipdrive-web` Deployment and Service if they still exist.
+7. Update the `hopskipdrive-api` Deployment image to the commit SHA.
+8. Wait for Kubernetes rollout success.
 
 ## Required GitHub Configuration
 
@@ -61,6 +63,21 @@ kubectl -n hopskipdrive create secret generic hopskipdrive-secrets \
   --from-literal=DATABASE_URL='postgres://USER:PASSWORD@HOST:5432/DB' \
   --from-literal=SECRET_KEY_BASE='replace-with-rails-secret'
 ```
+
+Production URL:
+
+```text
+http://k8s-hopskipd-hopskipd-a41482e266-1609770681.us-west-2.elb.amazonaws.com
+```
+
+AWS Console landmarks:
+
+- EKS cluster: `hopskipdrive-lab`.
+- ECR repository: `hopskipdrive`.
+- Kubernetes namespace: `hopskipdrive`.
+- Deployment and Service: `hopskipdrive-api`.
+- Public Ingress: `hopskipdrive-web`, preserved from the original scaffold so the existing ALB URL keeps working.
+- Node target: ARM64 nodes, because the deploy image is built as `linux/arm64`.
 
 ## Rollback
 
@@ -93,6 +110,7 @@ kubectl -n hopskipdrive rollout status deployment/hopskipdrive-api --timeout=120
 - Kubernetes scrape annotations are included on the Pod template.
 - Readiness failures log the exception class without exposing database details.
 - Rollout status in CI gives a deployment-level signal before the workflow succeeds.
+- EKS console read-only RBAC lets the AWS console inspect pods, services, deployments, nodes, and ingresses without granting write permissions.
 
 ## EM Interview Tradeoffs
 
