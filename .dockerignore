@@ -1,0 +1,14 @@
+.git
+.github
+.bundle
+log/*
+tmp/*
+!/tmp/.keep
+!/tmp/pids/.keep
+node_modules
+public/coverage
+public/doc
+storage/*
+!/storage/.keep
+vendor/bundle
+output
