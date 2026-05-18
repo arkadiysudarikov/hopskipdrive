@@ -12,15 +12,14 @@ RSpec.describe 'api/v1/upcoming_rides' do
   end
 
   before do
-    ["1588 E Thomspon Blvd",
-     "2112 E Thompson Blvd"].each do |address|
-      Address.find_or_create_by!(address: address)
+    home_address = Address.find_or_create_by!(address: "1588 E Thomspon Blvd")
+    destination_address = Address.find_or_create_by!(address: "2112 E Thompson Blvd")
+
+    Driver.find_or_create_by!(id: "e76885d9-dc50-4616-830e-cd24beefd7d9") do |driver|
+      driver.home_address = home_address
     end
 
-    Driver.find_or_create_by!(id: "e76885d9-dc50-4616-830e-cd24beefd7d9",
-                              home_address: Address.first)
-
-    Ride.find_or_create_by(start_address: Address.first, destination_address: Address.second)
+    Ride.find_or_create_by!(start_address: home_address, destination_address: destination_address)
 
     [
       ["1588 E Thomspon Blvd", "1588 E Thomspon Blvd"],
